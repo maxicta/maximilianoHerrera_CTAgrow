@@ -61,14 +61,13 @@ header {
 .nav-header li {
     display: flex;
     justify-content: center;
-    background-color: aqua;
+    background-color: #3a9637;
     width: 100%;
     transition: 0.2s ease;
 }
 .nav-header li:hover{
-    background-color: rgb(97, 148, 243);
+    background-color: #fbd802;
     transform: scale(1.3,1.1);
-    border-color: 10px solid black ;
 }
 
 
