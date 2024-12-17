@@ -25,6 +25,10 @@ main {
     gap: 10px;
 }
 
+main h2 {
+    margin: 2vw;
+}
+
 .article-section article {
     display: flex;
     flex-direction: column;
@@ -39,9 +43,11 @@ main {
 .article-section article img {
     display: flex;
     align-self: center;
-    width: 90%;
+    width: auto;
+    height: 100%;
     margin-bottom: 2vh;
     border-radius: 1rem;
+    object-fit: cover;
 }
 
 h3 {
@@ -85,11 +91,52 @@ button {
 }
 
 .info-main div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-main div div {
     background-color: #3a9637;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-/*     margin-top: 1vh;
- */    width: 80%;
+    margin-top: 1.5vh;
+    width: 80%;
+}
+
+@media (min-width: 768px) {
+
+    .article-section section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .article-section article {
+        width: 40%;
+        
+
+    }
+
+    .info-main {
+        flex-direction: row;
+        background-color: #fbd802;
+        margin: 0%;
+        gap: 0%;
+    }
+    
+    .info-main div {
+        margin-bottom: 2vh;
+        
+    }
+
+    .info-main div div {
+        width: 90%;
+    }
+
+    /* .info-main :last-child {
+        margin-bottom: 5vh;
+    } */
 }
