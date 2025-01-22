@@ -1,0 +1,53 @@
+#list-product-car img {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+#section-shop {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    pad: 1rem;
+}
+
+
+#section-shop button {
+    color: greenyellow;
+    background-color: black;
+    border: 2px solid greenyellow;
+    border-radius: 2rem;
+    padding: 1rem;
+    transition: .2s ease;
+    width: 100%;
+}
+
+#section-shop button:hover {
+    background-color: greenyellow;
+    color: black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+@media (min-width: 768px) {
+    .container-shop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    #list-product-car img {
+        width: 65%;
+    }
+
+    #section-shop {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    #section-shop button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,54 @@
+main section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0px;
+}
+
+.img-product {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 90%;
+    gap: 1rem;
+
+}
+
+.cinta-img-product {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cinta-img-product img {
+    width: 30%;
+}
+
+.detail-product {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    width: 90%;
+}
+
+.detail-product button {
+    color: greenyellow;
+    background-color: black;
+    border: 2px solid greenyellow;
+    border-radius: 2rem;
+    padding: 1rem;
+    transition: .2s ease;
+
+}
+
+.detail-product button:hover {
+    background-color: greenyellow;
+    color: black;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+#nombre-product-detail {
+    font-size: 2rem;
+    font-weight: bold;
+}
