@@ -1,0 +1,70 @@
+sitios de inspiracion para la creacion del proyecto
+
+ astrogrow.com.ar
+ elgrowshop.com.ar
+ sanisidro422.com.ar
+
+
+caracteristicas del sitio web..
+
+home---
+
+    header:
+        section-topbar:
+        con las redes y algun mensaje de promocion
+        el logo, la barra de busqueda y los botones de user, carrito
+
+
+        nav-bar:
+            lista con items: semilla, abono, fertilizante, pesticida, accesorios, etc
+
+    main:
+        banner (reel)
+
+        seccion destacados promocion o descuetos (articulos)
+        
+        botones de acceso
+            iluminacion, parafarnalia, sustrato.
+        
+        cinta informacion sobre nosotros.
+
+    footer:
+
+        4 section
+            -horarios
+            -telefonos y contacto
+            -donde nos encontramos, sedes
+            -suscribite.
+
+
+detalle del producto---
+
+    imagen del producto
+    a un lado maneras de pago
+    abajo descripcion del producto
+
+
+
+carrito de compras---
+
+    lista de productos en el carrito
+    total de compra en los productos en el carrito
+    boton comprar
+    boton seguir comprando
+
+
+login--
+
+    email y contrase;a
+
+register---
+
+    columna con nombre, email, telefono, contrase;a y confirmar contrase;a
+
+
+paleta de colores
+
+verde = #3a9637
+violeta = #632a81
+amarillo = #fbd802
+aqua = #62bfba

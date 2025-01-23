@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+<body>
+    <%- include('./partials/header') %>
+    <main>
+        <section class="form-login">
+            <h3>Crear Cuenta</h3>
+            <form class="form-login" action="get">
+                <input type="text" id="nombre" placeholder="Nombre">
+                <input type="text" id="apellido" placeholder="Apellido">
+                <input type="email" id="email" placeholder="Email">
+                <input type="password" id="password" placeholder="Contraseña">
+                <input type="password" id="password2" placeholder="Repetir Contraseña">
+                <button id="button-registro">REGISTRAR</button>
+            </form>
+        </section>
+    </main>
+
+
+    <%- include('./partials/footer') %>
+
+</body>
+</html>

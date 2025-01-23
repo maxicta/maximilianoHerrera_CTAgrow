@@ -21,7 +21,7 @@ main section {
 }
 
 .cinta-img-product img {
-    width: 30%;
+    width: 70%;
 }
 
 .detail-product {
@@ -42,6 +42,7 @@ main section {
 
 }
 
+
 .detail-product button:hover {
     background-color: greenyellow;
     color: black;
@@ -49,6 +50,11 @@ main section {
 }
 
 #nombre-product-detail {
-    font-size: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#precio-product-detail {
+    font-size: 1.8rem;
     font-weight: bold;
 }
