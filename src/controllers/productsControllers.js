@@ -11,7 +11,7 @@ const productsController = {
 
     home: (req,res) => {
         const productos = JSON.parse(fs.readFileSync('../data/products.json','utf-8'));
-        res.render('home',{ productos });
+        res.render('home',{ productos: productos.productos });
     },
 }
 module.exports = productsController;
