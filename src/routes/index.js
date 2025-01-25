@@ -7,7 +7,7 @@ var router = express.Router();
 const { home } = require('../controllers/productsControllers'); */
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('home', { title: 'CTAgrowshop' });
+    res.render('./home', { title: 'CTAgrowshop' });
 });
 
 module.exports = router;

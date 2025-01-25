@@ -10,6 +10,8 @@ const productsRouter = require('./routes/products-router')
 const shopCarRouter = require('./routes/shopCarRouter')
 let registerRouter = require('./routes/registerRouter')
 let loginRouter = require('./routes/loginRouter')
+let productAddRouter = require('./routes/productAddRouter')
+let productEditRouter = require('./routes/productsEditRouter')
 const app = express();
 
 // view engine setup
@@ -20,11 +22,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/productsAdd', productAddRouter);
+app.use('/productsEdit', productEditRouter);
 app.use('/shopCar', shopCarRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);

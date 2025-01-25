@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+
+
+    <main>
+        <h2>agregar producto</h2>
+        <section class="form-login">
+                        
+            <form class="form-add-product" action="get">
+                <input type="text" id="nombre" placeholder="Nombre del producto">
+                <input type="text" id="apellido" placeholder="Descripcion del producto">
+                <input type="file" id="imagen" placeholder="Imagen del producto">
+                <input type="text" id="categoria" placeholder="Categoria del producto">
+                <input type="text" id="precio" placeholder="Precio del producto">
+                
+                <button id="button-confirm-add">CONFIRMAR CAMBIOS</button>
+            </form>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+</body>
+</html>
