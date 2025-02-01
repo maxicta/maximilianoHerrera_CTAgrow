@@ -5,6 +5,7 @@
 }
 
 button {
+    align-self: center;
     color: greenyellow;
     background-color: black;
     border: 2px solid greenyellow;

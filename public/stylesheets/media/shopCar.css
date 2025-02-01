@@ -26,6 +26,12 @@
     pad: 1rem;
 }
 
+#section-shop form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 #section-shop button {
     color: greenyellow;
