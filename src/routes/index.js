@@ -16,12 +16,12 @@ module.exports = router; */
 
 const fs = require('fs');
 
-router.get('/', productsControllers.home /* function(req, res, next) {
+router.get('/false', productsControllers.home /* function(req, res, next) {
     const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
         
     res.render('home', {productos: productos.productos});
     } */);
-router.get('/products', productsControllers.detail /* function(req, res, next) {
+router.get('/products2', productsControllers.detail /* function(req, res, next) {
     const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
         
     res.render('products', {productos: productos.productos});

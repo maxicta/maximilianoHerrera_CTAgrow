@@ -16,7 +16,8 @@
                         <h3><%= element.producto %></h3>
                         <img src="<%= element.imagen %>" alt="imagen del producto <%= element.producto %>">
                         <p><%= element.precio %></p>
-                        <button>AGREGAR AL CARRO</button>
+                        <a href=""><button>AGREGAR AL CARRO</button></a>
+                        <a href="/detail/<%=element.id%>"><button>VER MAS</button></a>
                     </article>
                     <% }); %>
                     

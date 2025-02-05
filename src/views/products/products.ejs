@@ -8,18 +8,15 @@
             <section>
                 <div class="cinta-img-product">
                     <div class="img-product">
-                        <img src="images/morralIMG1.jpg" alt="imagen producto1">
-                        <img src="images/morralIMG2.jpg" alt="imagen producto2">
-                        <img src="images/morralIMG3.jpg" alt="imagen producto3">
+                        <img src="<%= imagen %>" alt="producto <%= producto %>">
                     </div>
-                    <img src="images/morralIMG1.jpg" alt="imagen producto principal">
                 </div>
                 <article class="detail-product">
-                    <h4 id="nombre-product-detail">Morral tipo bandolera RAW</h4>
-                    <p id="precio-product-detail">$45.000</p>
+                    <h4 id="nombre-product-detail"><%= producto %></h4>
+                    <p id="precio-product-detail"><%=precio%></p>
                     <button>AGREGAR AL CARRO</button>
                     <button>COMPRAR</button>
-                    <p id="descripcion-product-detail">Morral estilo bandolera colores varios, con cinta regulable</p>
+                    <p id="descripcion-product-detail"><%= modelo %></p>
                 </article>
             </section>
         </div>

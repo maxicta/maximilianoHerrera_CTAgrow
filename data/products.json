@@ -1,39 +1,45 @@
 {
-    "productos": [
-        {
-            "producto": "Fertilizante Orgánico",
-            "marca": "BioBizz",
-            "modelo": "Bio-Grow",
-            "precio": 25.99,
-            "imagen": "/images/fertilizante.jpeg"
-        },
-        {
-            "producto": "Lámpara LED de Cultivo",
-            "marca": "Mars Hydro",
-            "modelo": "TS 1000",
-            "precio": 139.99,
-            "imagen": "/images/lampara.jpeg"
-        },
-        {
-            "producto": "Maceta de Tela",
-            "marca": "Smart Pots",
-            "modelo": "5 Galones",
-            "precio": 7.49,
-            "imagen": "/images/maceta.jpeg"
-        },
-        {
-            "producto": "Tienda de Cultivo",
-            "marca": "Gorilla Grow Tent",
-            "modelo": "2x2.5",
-            "precio": 159.95,
-            "imagen": "/images/indoor.jpeg"
-        },
-        {
-            "producto": "Medidor de PH",
-            "marca": "Bluelab",
-            "modelo": "pH Pen",
-            "precio": 84.0,
-            "imagen": "/images/medidorph.jpeg"
-        }
-    ]
+  "productos": [
+    {
+      "id": "1",
+      "producto": "Fertilizante Orgánico",
+      "marca": "BioBizz",
+      "modelo": "Bio-Grow",
+      "precio": 25.99,
+      "imagen": "/images/fertilizante.jpeg"
+    },
+    {
+      "id": "2",
+      "producto": "Lámpara LED de Cultivo",
+      "marca": "Mars Hydro",
+      "modelo": "TS 1000",
+      "precio": 139.99,
+      "imagen": "/images/lampara.jpeg"
+    },
+    {
+      "id": "3",
+      "producto": "Maceta de Tela",
+      "marca": "Smart Pots",
+      "modelo": "5 Galones",
+      "precio": 7.49,
+      "imagen": "/images/maceta.jpeg"
+    },
+    {
+      "id": "4",
+      "producto": "Tienda de Cultivo",
+      "marca": "Gorilla Grow Tent",
+      "modelo": "2x2.5",
+      "precio": 159.95,
+      "imagen": "/images/indoor.jpeg"
+    },
+    {
+      "id": "5",
+      "producto": "Medidor de PH",
+      "marca": "Bluelab",
+      "modelo": "pH Pen",
+      "precio": 84,
+      "imagen": "/images/medidorph.jpeg"
+    }
+
+  ]
 }
