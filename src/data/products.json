@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Fertilizante Orgánico",
-    "marca": "BioBizz hace que tus plantas exploten de felicidad",
+    "marca": "BioBizz",
     "modelo": "Bio-Grow",
     "price": 50000,
     "image": "fertilizante.jpeg"
@@ -10,7 +10,7 @@
   {
     "id": "2",
     "name": "Lámpara LED de Cultivo",
-    "marca": "Mars Hydro para cultivar unos cocos que son una locura.. no te lo vas a poder creer",
+    "marca": "Mars Hydro",
     "modelo": "TS 1000",
     "price": 30000,
     "image": "lampara.jpeg"
@@ -50,7 +50,7 @@
     "id": "6e34ed14-c502-442c-a5d0-66bdf35e5c61",
     "name": "lillo",
     "price": 50000,
-    "marca": "lillo de celuloso por cantidades inmesurables que no te los vas a poder creer.. una cosa de locos..",
+    "marca": "maceta de 5lts",
     "image": "maceta.jpeg"
   },
   {
