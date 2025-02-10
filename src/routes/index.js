@@ -1,31 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-let productsControllers = require('../controllers/productsControllers')
-
-/* let productsController = require('../controllers/productsController');
-const { home } = require('../controllers/productsControllers'); */
-/* GET home page. */
-/* router.get('/', function(req, res, next) {
-    
-    res.render('./home', { title: 'CTAgrowshop' });
-});
-
-module.exports = router; */
+const {admin} = require('../controllers/indexControllers')
 
 
-const fs = require('fs');
-
-router.get('/false', productsControllers.home /* function(req, res, next) {
-    const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
-        
-    res.render('home', {productos: productos.productos});
-    } */);
-router.get('/products2', productsControllers.detail /* function(req, res, next) {
-    const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
-        
-    res.render('products', {productos: productos.productos});
-    } */);
-
+router.get('/admin', admin);
 
 module.exports = router;

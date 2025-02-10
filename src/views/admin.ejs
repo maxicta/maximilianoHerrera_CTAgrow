@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/headerAdmin.css">
+</head>
+<body>
+    <header>
+        <h1>PRODUCTOS</h1>
+    </header>
+    <main>
+        <div class="admin-products">
+            <% products.forEach(product => { %>
+                <div class="product">
+                    <h2><%= product.name %></h2>
+                    <p><%= product.price %></p>
+                    <div class="buttons">    
+                        <a href="/product/edit/<%= product.id %>"><button>EDITAR</button></a>
+                        <form action="/product/delete/<%= product.id %>?_method=DELETE" method="POST">
+                            <button>ELIMINAR</button>
+                        </form>
+                    </div>    
+                </div>
+            <% }) %>
+        </div>
+        <a href="/product/add"><button>AGREGAR PRODUCTOS</button></a>
+    </main>
+</body>
+</html>

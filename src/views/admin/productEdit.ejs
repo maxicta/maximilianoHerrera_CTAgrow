@@ -7,15 +7,18 @@
 
 
     <main>
-        <h2>agregar producto</h2>
+        <h2>MODIFICAR PRODUCTO</h2>
         <section class="form-login">
                         
-            <form class="form-add-product" action="get">
-                <input type="text" id="nombre" placeholder="Nombre del producto">
-                <input type="text" id="apellido" placeholder="Descripcion del producto">
-                <input type="file" id="imagen" placeholder="Imagen del producto">
+            <form class="form-add-product" action="/product/edit/<%= id %>?_method=PUT" method="POST">
+                <label for="name">Nombre de producto</label>
+                <input type="text" value="<%= name %>" name="name" id="nombre" placeholder="Nombre del producto">
+                <label for="marca">Marca del producto</label>
+                <input type="text" value="<%= marca %>" name="marca" id="apellido" placeholder="Descripcion del producto">
+                <input type="file"  id="imagen" placeholder="Imagen del producto">
                 <input type="text" id="categoria" placeholder="Categoria del producto">
-                <input type="text" id="precio" placeholder="Precio del producto">
+                <label for="price">Precio del producto</label>
+                <input type="text" value="<%= price %>" name="price" id="precio" placeholder="Precio del producto">
                 
                 <button id="button-confirm-add">CONFIRMAR CAMBIOS</button>
             </form>

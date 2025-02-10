@@ -90,38 +90,6 @@
     "image": "linda_hernandez.jpg"
   },
   {
-    "firtsName": "juan",
-    "lastName": "pelota",
-    "email": "juan123@gmail.com",
-    "password": "",
-    "password2": ""
-  },
-  {
-    "firtsName": "",
-    "lastName": "",
-    "email": "",
-    "password": "",
-    "password2": ""
-  },
-  {
-    "firtsName": "",
-    "lastName": "",
-    "email": "",
-    "password": "",
-    "password2": ""
-  },
-  {
-    "firtsName": "",
-    "lastName": "",
-    "email": "",
-    "password": "",
-    "password2": ""
-  },
-  {
-    "firtsName": "",
-    "lastName": "",
-    "email": "",
-    "password": "",
-    "password2": ""
+    "id": "f3c9c92c-5064-4034-a072-d41f2ddc6071"
   }
 ]

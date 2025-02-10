@@ -1,6 +1,8 @@
-const { log } = require('console');
+const { log, profile } = require('console');
 const fs = require('fs');
-const { store } = require('./productsControllers');
+const { store, edit } = require('./productsControllers');
+const { readFile, writeFile } = require('../data/fileSync');
+const uuid = require('uuid');
 
 const usersController = {
 
@@ -12,11 +14,58 @@ const usersController = {
     },
 
     storeUser: (req,res) => {
-        const users = JSON.parse(fs.readFileSync('./data/users.json','utf-8'));
-        const newUser = req.body;
-        users.push(newUser);
-        fs.writeFileSync('./data/users.json',JSON.stringify(users,null,2),'utf-8');
+        const id = uuid.v4();
+        const users = readFile('users.json');
+        const {firtsName,
+            lastName,
+            email,
+            password} = req.body;
+        users.push({
+            firtsName,
+            lastName,
+            email,
+            password,
+            id});
+        writeFile('users.json', users);
         res.render('users/login');
+    },
+
+    profile: (req,res) => {
+        const users = readFile('users.json');
+        const id = req.params.id;
+        const user = users.find(user => user.id === id);
+        
+        res.render('./users/profile', {...user} );
+    },
+
+    editProfile: (req,res) => {
+        const users = readFile('users.json');
+        const id = req.params.id;
+        const user = users.find(user => user.id === id);
+        res.render('./users/profileEdit', {...user});
+
+    },
+
+    updateProfile: (req,res) => {
+        const users = readFile('users.json');
+        const id = req.params.id;
+        const user = users.find(user => user.id === id);
+        const {firtsName,
+            lastName,
+            email,
+            password} = req.body;
+        user.firtsName = firtsName;
+        user.lastName = lastName;
+        user.email = email;
+        user.password = password;
+        writeFile('users.json', users);
+        console.log(req.body);
+        
+        res.render('./users/profile', {...user});
+    },
+
+    deleteProfile: (req,res) => {
+
     }
 }
 

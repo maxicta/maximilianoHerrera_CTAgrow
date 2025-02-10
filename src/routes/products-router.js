@@ -11,11 +11,11 @@ router.get('/add', add);
 
 router.post('/add', store);
 
-router.get('/edit', edit);
+router.get('/edit/:id', edit);
 
-router.put('/edit', update);
+router.put('/edit/:id', update);
 
-router.delete('/delete', remove);
+router.delete('/delete/:id', remove);
 
 
 

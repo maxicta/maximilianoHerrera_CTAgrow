@@ -4,6 +4,14 @@
     align-items: center;
 }
 
+.form-add-product {
+    width: 80%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 button {
     align-self: center;
     color: greenyellow;

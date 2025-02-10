@@ -1,23 +1,23 @@
-const db = require('../../data/products.json','utf-8');
-const { log } = require('console');
-const fs = require('fs')
+//const { log } = require('console');
+const fs = require('fs');
+const { readFile, writeFile } = require('../data/fileSync');
+const { v4: uuidv4 } = require('uuid');
 
 const productsController = {
     home: (req,res) => {
-        //const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
-        const productos = db;
-        res.render('home',{ productos: productos.productos });
-/*         console.log(productos);
- */        
+        const products = readFile('products.json');
+        res.render('home',{ products: products });
+
     },
 
     detail: (req,res,next) => {
+        const products = readFile('products.json');
         const id = req.params.id;
-        //const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
-        const producto = db.productos.find(producto => producto.id == id);
-        //console.log(producto);
+        const product = products.find(product => product.id == id);
         
-        return res.render('products/products',{ ...producto })
+        return res.render('products/products',{ ...product })
+        
+        
     },
 
     add: (req,res) => {
@@ -26,25 +26,63 @@ const productsController = {
     
     
     store: (req,res) => {
-        const productos = JSON.parse(fs.readFileSync('./data/products.json','utf-8'));
-        const newProduct = req.body;
-        productos.productos.push(newProduct);
-        fs.writeFileSync('./data/products.json',JSON.stringify(productos,null,2),'utf-8');
-        res.render('home',{ productos: productos.productos });
+        const products = readFile('products.json');
+        const {name, price, marca} = req.body;
+        
+        const newProduct = {
+
+            id : uuidv4(),
+            name: name,
+            price: +price,
+            marca: marca,
+            image : "maceta.jpeg"
+        };
+        
+        products.push(newProduct);
+        
+        writeFile('products.json',products);
+        res.redirect('/product/detail/' + newProduct.id);
     },
     
     edit: (req,res) => {
-        console.log('edit');
+        const {id} = req.params;
+        const products = readFile('products.json');
+        const product = products.find(product => product.id == id);
         
-        res.render('/admin/productEdit');
+        res.render('admin/productEdit',{...product});
+        
     },
 
     update: (req,res) => {
-        res.render('products');
+
+        
+        const products = readFile('products.json');
+        const {name,price,marca} = req.body;
+        
+        const productModify = products.map(product => {
+            if(product.id === req.params.id){
+                product.name = name;
+                product.price = +price;
+                product.marca = marca;
+            }
+            return product;
+        })
+        
+        writeFile('products.json',productModify);
+        res.redirect('/product');
     },
 
     remove: (req,res) => {
-        res.send('products');
+        const products = readFile('products.json');
+        const {id} = req.params;
+        
+        const productModify = products.filter(product => product.id !== +id)
+
+        writeFile('products.json',productModify);
+        console.log(productModify);
+        console.log(id);
+        
+        return res.redirect('/product');
     }
 
 
