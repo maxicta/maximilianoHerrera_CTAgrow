@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <div>
-        <h1>Perfil de Usuario</h1>
+    <h1>Perfil de Usuario</h1>
+    <form action="/users/profile/<%= id %>?_method=put" method="post" enctype="multipart/form-data">
+
         <input type="text" name="name" value="<%= name %>">
         <input type="text" name="lastName" value="<%= lastName %>">
         <input type="email" name="email" value="<%= email %>">
-    </div>
-    <form action="/users/profile/<%= id %>?_method=put" method="post">
-        <button>Actualizar datos</button>
+        <div>
+            <label for="avatar">Imagen de perfil:</label>
+            <input type="file" name="avatar" id="avatar" accept="image/*">
+        </div>
+        <button type="button">Cancelar</button>
+        <button type="submit">Actualizar datos</button>
     </form>
-    
+
 </body>
+
 </html>

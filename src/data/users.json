@@ -1,12 +1,12 @@
 [
   {
     "id": 1,
-    "name": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
+    "name": "Eric",
+    "lastName": "Mena",
+    "email": "menaericdaniel@gmail.com",
     "password": "password123",
     "category": "admin",
-    "image": "john_doe.jpg"
+    "image": "1739835196045-1000_F_358108692_9YeDVbAdz5cctkFBjGKDXMfGwmsbmigl.jpg"
   },
   {
     "id": 2,
@@ -62,7 +62,6 @@
     "category": "user",
     "image": "james_wilson.jpg"
   },
-
   {
     "id": "a8e72b5d-cba0-43ea-9cce-51dea86aff4e",
     "lastName": "acevedo",

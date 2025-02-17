@@ -14,10 +14,9 @@ const productsController = {
     detail: (req,res,next) => {
         const products = readFile('products.json');
         const id = req.params.id;
-        const product = products.find(product => product.id == id);
+        const product = products.find(product => product.id == id);        
         
         return res.render('products/products',{ ...product , title: 'Detalle del producto' });
-        
         
     },
 

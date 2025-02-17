@@ -10,7 +10,7 @@
         <h2>agregar producto</h2>
         <section class="form-login">
                         
-            <form class="form-add-product" action="/product/add" method="POST">
+            <form class="form-add-product" action="/product/add" method="POST" enctype="multipart/form-data">
                 <label for="name">Nombre del producto</label>
                 <input type="text" name="name" id="name" placeholder="Nombre del producto">
                 <label for="marca">Marca del producto</label>
@@ -24,6 +24,7 @@
                 </select>
                 <label for="price">Precio del producto</label>
                 <input type="text" name="price" id="price" placeholder="Precio del producto">
+                <input type="file" name="image-product">
                 
                 <button id="button-confirm-add">AGREGAR PRODUCTO</button>
             </form>
