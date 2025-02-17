@@ -8,14 +8,14 @@
 <body>
     <div>
         <h1>Perfil de Usuario</h1>
-        <p>Nombre: <%= firtsName %></p>
+        <p>Nombre: <%= name %></p>
         <p>apellido: <%= lastName %></p>
         <p>Email: <%= email %></p>
     </div>
     <form action="/users/editprofile/<%= id %>" method="get">
         <button>Actualizar datos</button>
     </form>
-    <form action="/users/profile/<%= id %>?_method=DELETE" method="post">
+    <form action="/users/remove/<%= id %>?_method=DELETE" method="post">
         <button>Eliminar cuenta</button>
     </form>
 </body>

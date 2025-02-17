@@ -5,7 +5,7 @@
     <main>
         <%- include("../partials/header") %>
         <div>
-            <section>
+            <section class="Product-section">
                 <div class="cinta-img-product">
                     <div class="img-product">
                         <img src="/images/<%= image %>" alt="productos <%= name %> ">
@@ -13,10 +13,10 @@
                 </div>
                 <article class="detail-product">
                     <h4 id="nombre-product-detail"><%= name %></h4>
-                    <p id="precio-product-detail"><%=price%></p>
+                    <p id="precio-product-detail">$<%=price%></p>
+                    <p id="descripcion-product-detail"><%= marca %></p>
                     <button>AGREGAR AL CARRO</button>
                     <button>COMPRAR</button>
-                    <p id="descripcion-product-detail"><%= marca %></p>
                 </article>
             </section>
         </div>

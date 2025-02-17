@@ -2,11 +2,12 @@
 const fs = require('fs');
 const { readFile, writeFile } = require('../data/fileSync');
 const { v4: uuidv4 } = require('uuid');
+const { title } = require('process');
 
 const productsController = {
     home: (req,res) => {
         const products = readFile('products.json');
-        res.render('home',{ products: products });
+        res.render('home',{ products: products , title: 'Lista de productos' });
 
     },
 
@@ -15,13 +16,13 @@ const productsController = {
         const id = req.params.id;
         const product = products.find(product => product.id == id);
         
-        return res.render('products/products',{ ...product })
+        return res.render('products/products',{ ...product , title: 'Detalle del producto' });
         
         
     },
 
     add: (req,res) => {
-        res.render('admin/productAdd');
+        res.render('admin/productAdd', { title: 'Agregar producto' });
     },
     
     
@@ -41,7 +42,7 @@ const productsController = {
         products.push(newProduct);
         
         writeFile('products.json',products);
-        res.redirect('/product/detail/' + newProduct.id);
+        res.redirect('/admin');
     },
     
     edit: (req,res) => {
@@ -49,7 +50,7 @@ const productsController = {
         const products = readFile('products.json');
         const product = products.find(product => product.id == id);
         
-        res.render('admin/productEdit',{...product});
+        res.render('admin/productEdit',{...product, title: 'Editar producto'});
         
     },
 
@@ -69,20 +70,20 @@ const productsController = {
         })
         
         writeFile('products.json',productModify);
-        res.redirect('/product');
+        res.redirect('/admin');
     },
 
     remove: (req,res) => {
         const products = readFile('products.json');
         const {id} = req.params;
         
-        const productModify = products.filter(product => product.id !== +id)
+        const productModify = products.filter(product => product.id !== id)
 
         writeFile('products.json',productModify);
         console.log(productModify);
-        console.log(id);
         
-        return res.redirect('/product');
+        
+        return res.redirect('/admin');
     }
 
 

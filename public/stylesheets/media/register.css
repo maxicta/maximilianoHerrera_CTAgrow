@@ -18,9 +18,10 @@ button {
     background-color: black;
     border: 2px solid greenyellow;
     border-radius: 2rem;
-    padding: 1rem;
+    
     transition: .2s ease;
     width: 80%;
+    height: 2.5rem;
 }
 
 button:hover {

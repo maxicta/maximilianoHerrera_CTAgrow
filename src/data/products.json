@@ -1,24 +1,8 @@
 [
   {
-    "id": "1",
-    "name": "Fertilizante Orgánico",
-    "marca": "BioBizz hace que tus plantas exploten de felicidad",
-    "modelo": "Bio-Grow",
-    "price": 50000,
-    "image": "fertilizante.jpeg"
-  },
-  {
-    "id": "2",
-    "name": "Lámpara LED de Cultivo",
-    "marca": "Mars Hydro para cultivar unos cocos que son una locura.. no te lo vas a poder creer",
-    "modelo": "TS 1000",
-    "price": 30000,
-    "image": "lampara.jpeg"
-  },
-  {
     "id": "3",
     "name": "Maceta de Tela",
-    "marca": "Smart Pots para plantar unas monster increibles",
+    "marca": "Maceta soplada de plástico resistente, ligera y duradera. Ideal para un crecimiento saludable de tus plantas gracias a su excelente drenaje y diseño ergonómico.",
     "modelo": "5 Galones",
     "price": 2500,
     "image": "maceta.jpeg"
@@ -26,38 +10,31 @@
   {
     "id": "4",
     "name": "Tienda de Cultivo",
-    "marca": "Gorilla Grow Tent",
+    "marca": "Carpa de cultivo indoor con revestimiento reflectante para maximizar la luz. Estructura resistente, fácil de montar y con ventilación optimizada para un crecimiento controlado.",
     "modelo": "2x2.5",
     "price": 159.95,
     "image": "indoor.jpeg"
   },
   {
     "id": "5",
-    "name": "Medidor de PH",
-    "marca": "Bluelab",
+    "name": "Medidor de pH",
+    "marca": "Medidor de pH preciso y portátil. Perfecto para monitorear el pH del agua o sustrato, garantizando un entorno ideal para tus plantas.",
     "modelo": "pH Pen",
     "price": 84,
     "image": "medidorph.jpeg"
   },
   {
     "id": "b12935c7-ec13-4ef7-87e5-61e62cf18366",
-    "name": "jarra",
+    "name": "Lampara de Cultivo",
     "price": 1000,
-    "marca": "jarra de 8lts",
-    "image": "maceta.jpeg"
+    "marca": "Lámpara de cultivo de espectro completo. Promueve el desarrollo óptimo de las plantas en cualquier etapa de crecimiento con eficiencia energética.",
+    "image": "lampara.jpeg"
   },
   {
-    "id": "6e34ed14-c502-442c-a5d0-66bdf35e5c61",
-    "name": "lillo",
-    "price": 50000,
-    "marca": "lillo de celuloso por cantidades inmesurables que no te los vas a poder creer.. una cosa de locos..",
-    "image": "maceta.jpeg"
-  },
-  {
-    "id": "3a80e304-f275-4655-97c1-f1c6eb58a16a",
-    "name": "producto nuevo",
-    "price": 10000,
-    "marca": "el mejor producto de todos",
+    "id": "80460846-ebf8-4954-bc52-799af696378e",
+    "name": "producto de prueba",
+    "price": 150,
+    "marca": "descripcion para un producto agergado y que redireccione a la vista admin",
     "image": "maceta.jpeg"
   }
 ]

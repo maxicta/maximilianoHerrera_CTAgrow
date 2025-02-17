@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "firstName": "John",
+    "name": "John",
     "lastName": "Doe",
     "email": "john.doe@example.com",
     "password": "password123",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "firstName": "Jane",
+    "name": "Jane",
     "lastName": "Smith",
     "email": "jane.smith@example.com",
     "password": "password123",
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "firstName": "Michael",
+    "name": "Michael",
     "lastName": "Johnson",
     "email": "michael.johnson@example.com",
     "password": "password123",
@@ -28,7 +28,7 @@
   },
   {
     "id": 4,
-    "firstName": "Emily",
+    "name": "Emily",
     "lastName": "Davis",
     "email": "emily.davis@example.com",
     "password": "password123",
@@ -37,7 +37,7 @@
   },
   {
     "id": 5,
-    "firstName": "David",
+    "name": "David",
     "lastName": "Martinez",
     "email": "david.martinez@example.com",
     "password": "password123",
@@ -46,7 +46,7 @@
   },
   {
     "id": 6,
-    "firstName": "Sarah",
+    "name": "Sarah",
     "lastName": "Lopez",
     "email": "sarah.lopez@example.com",
     "password": "password123",
@@ -55,41 +55,32 @@
   },
   {
     "id": 7,
-    "firstName": "James",
+    "name": "James",
     "lastName": "Wilson",
     "email": "james.wilson@example.com",
     "password": "password123",
     "category": "user",
     "image": "james_wilson.jpg"
   },
+
   {
-    "id": 8,
-    "firstName": "Laura",
-    "lastName": "Garcia",
-    "email": "laura.garcia@example.com",
-    "password": "password123",
-    "category": "user",
-    "image": "laura_garcia.jpg"
+    "id": "a8e72b5d-cba0-43ea-9cce-51dea86aff4e",
+    "lastName": "acevedo",
+    "email": "carlitos@gmail.com",
+    "password": "$2b$10$usj5kWMWPwiOso3BDgO5Gu7e59HbfZKhd5NVFfdyqHd8bD3GFmLEu",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user"
   },
   {
-    "id": 9,
-    "firstName": "Robert",
-    "lastName": "Miller",
-    "email": "robert.miller@example.com",
-    "password": "password123",
-    "category": "user",
-    "image": "robert_miller.jpg"
-  },
-  {
-    "id": 10,
-    "firstName": "Linda",
-    "lastName": "Hernandez",
-    "email": "linda.hernandez@example.com",
-    "password": "password123",
-    "category": "user",
-    "image": "linda_hernandez.jpg"
-  },
-  {
-    "id": "f3c9c92c-5064-4034-a072-d41f2ddc6071"
+    "id": "f6cdb510-c31e-4673-97ad-f99bce95b158",
+    "lastName": "galarga",
+    "email": "alber@test.com",
+    "password": "$2b$10$f0z9Qy5T4Ni80WMKbVD5POkZhFUyXf/lXz8htRLhTVTcbPIkZHiKu",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user"
   }
 ]

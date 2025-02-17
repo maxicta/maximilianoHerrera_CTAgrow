@@ -7,5 +7,13 @@
 @import './media/products.css';
 @import './media/shopCar.css';
 @import './media/register.css';
+@import './headerAdmin.css';
+
+:root {
+    --verde: #ADFF2F;
+    --gris: #d4d3d3;
+    --negro: #0C0C0C;
+    --blanco: #FFFFFF;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Oxanium:wght@600&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');

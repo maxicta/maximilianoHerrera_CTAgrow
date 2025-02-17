@@ -5,7 +5,7 @@ const indexControllers = {
     
     admin: (req, res) => {
         const products = readFile('products.json')
-        res.render('admin', {products})
+        res.render('admin', {products, title: 'Administrador de productos'})
     }
 }
 

@@ -8,9 +8,9 @@
 <body>
     <div>
         <h1>Perfil de Usuario</h1>
-        <input type="text" value="<%= firtsName %>">
-        <input type="text" value="<%= lastName %>">
-        <input type="email" value="<%= email %>">
+        <input type="text" name="name" value="<%= name %>">
+        <input type="text" name="lastName" value="<%= lastName %>">
+        <input type="email" name="email" value="<%= email %>">
     </div>
     <form action="/users/profile/<%= id %>?_method=put" method="post">
         <button>Actualizar datos</button>
