@@ -81,20 +81,20 @@ const usersController = {
         
         const {name,
             lastName,
-            email,
-            password} = req.body;
-            user.name = name;
-            user.lastName = lastName;
-            user.email = email;
-            user.password = password;
-            
-            upload.single(user.image);
+            email } = req.body;
 
-
+            const usersModify = users.map(user => {
+                if(user.id.toString() === id ){
+                    user.name = name.trim();
+                    user.lastName = lastName.trim();
+                    user.email = email.trim();
+                    user.image = req.file ? req.file.filename : user.image
+                }
+                return user
+            })
             
-            writeFile('users.json', users);
-        
-        
+            writeFile('users.json', usersModify);
+    
         res.render('./users/profile', {...user});
     },
 
