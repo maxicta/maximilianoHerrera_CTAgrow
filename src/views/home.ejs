@@ -15,7 +15,7 @@
                     <% products.forEach(function(element) { %>
                         <article>
                             <h3><%= element.name %></h3>
-                            <img src="/images/<%= element.image %>" alt="imagen del producto <%= element.name %>">
+                            <img src="/images/products/<%= element.image %>" alt="imagen del producto <%= element.name %>">
                             <p>$<%= element.price %></p>
                             <a href=""><button>AGREGAR AL CARRO</button></a>
                             <a href="/product/detail/<%=element.id%>"><button>VER MAS</button></a>

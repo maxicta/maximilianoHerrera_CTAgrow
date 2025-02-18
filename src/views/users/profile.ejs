@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include('../partials/head') %>
+
 <body>
+    <%- include('../partials/header') %>
     <div>
         <h1>Perfil de Usuario</h1>
         <img width=150 src="/images/users/<%= image %>" alt="">
@@ -13,9 +11,8 @@
         <p>apellido: <%= lastName %></p>
         <p>Email: <%= email %></p>
     </div>
-    <form action="/users/editprofile/<%= id %>" method="get">
-        <button>Actualizar datos</button>
-    </form>
+    <button><a href="/users/editprofile/<%= id %>">Actualizar datos</a></button>
+
     <form action="/users/remove/<%= id %>?_method=DELETE" method="post">
         <button>Eliminar cuenta</button>
     </form>

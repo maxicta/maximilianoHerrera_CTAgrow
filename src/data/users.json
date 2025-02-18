@@ -9,24 +9,6 @@
     "image": "1739835196045-1000_F_358108692_9YeDVbAdz5cctkFBjGKDXMfGwmsbmigl.jpg"
   },
   {
-    "id": 2,
-    "name": "Jane",
-    "lastName": "Smith",
-    "email": "jane.smith@example.com",
-    "password": "password123",
-    "category": "user",
-    "image": "jane_smith.jpg"
-  },
-  {
-    "id": 3,
-    "name": "Michael",
-    "lastName": "Johnson",
-    "email": "michael.johnson@example.com",
-    "password": "password123",
-    "category": "user",
-    "image": "michael_johnson.jpg"
-  },
-  {
     "id": 4,
     "name": "Emily",
     "lastName": "Davis",
@@ -67,16 +49,6 @@
     "lastName": "acevedo",
     "email": "carlitos@gmail.com",
     "password": "$2b$10$usj5kWMWPwiOso3BDgO5Gu7e59HbfZKhd5NVFfdyqHd8bD3GFmLEu",
-    "token": null,
-    "validate": false,
-    "lock": false,
-    "rol": "user"
-  },
-  {
-    "id": "f6cdb510-c31e-4673-97ad-f99bce95b158",
-    "lastName": "galarga",
-    "email": "alber@test.com",
-    "password": "$2b$10$f0z9Qy5T4Ni80WMKbVD5POkZhFUyXf/lXz8htRLhTVTcbPIkZHiKu",
     "token": null,
     "validate": false,
     "lock": false,

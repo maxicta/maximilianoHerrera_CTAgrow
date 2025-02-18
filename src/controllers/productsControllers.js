@@ -3,6 +3,7 @@ const fs = require('fs');
 const { readFile, writeFile } = require('../data/fileSync');
 const { v4: uuidv4 } = require('uuid');
 const { title } = require('process');
+const upload = require('../middlewares/uploadProduct');
 
 const productsController = {
     home: (req,res) => {
@@ -28,6 +29,7 @@ const productsController = {
     store: (req,res) => {
         const products = readFile('products.json');
         const {name, price, marca} = req.body;
+        const imageProduct = req.file;
         
         const newProduct = {
 
@@ -35,7 +37,7 @@ const productsController = {
             name: name,
             price: +price,
             marca: marca,
-            image : "maceta.jpeg"
+            image : imageProduct ? req.file.filename : 'default-image.png'
         };
         
         products.push(newProduct);

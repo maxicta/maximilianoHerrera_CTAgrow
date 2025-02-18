@@ -4,6 +4,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
+const session = require('express-session')
+const sessionVerify = require('./middlewares/sessionVerify');
+
 
 
 const indexRouter = require('./routes/index');
@@ -16,13 +19,21 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride('_method'));
+app.use(session({
+  secret: 'your_secret_key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Cambia a true si estás utilizando HTTPS
+}));
 
+app.use(sessionVerify);
 
 app.use('/', indexRouter);
 app.use('/product', productsRouter);

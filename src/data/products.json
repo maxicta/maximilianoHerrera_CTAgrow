@@ -36,5 +36,19 @@
     "price": 150,
     "marca": "descripcion para un producto agergado y que redireccione a la vista admin",
     "image": "maceta.jpeg"
+  },
+  {
+    "id": "22a98ea2-7583-4f40-8155-3b28ac4d8931",
+    "name": "producti de prueba2",
+    "price": 502,
+    "marca": "descripcion para un producto agergado y que redireccione a la vista admin",
+    "image": "maceta.jpeg"
+  },
+  {
+    "id": "e40f0f73-e714-4e80-8571-eb8f0ed5ebbd",
+    "name": "producti de prueba3",
+    "price": 502,
+    "marca": "descripcion para un producto agergado y que redireccione a la vista admin",
+    "image": "1739842828351-WhatsApp Image 2025-02-04 at 15.37.45.jpeg"
   }
 ]
