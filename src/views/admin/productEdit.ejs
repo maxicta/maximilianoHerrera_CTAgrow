@@ -11,6 +11,7 @@
         <section class="form-login">
                         
             <form class="form-add-product" action="/product/edit/<%= id %>?_method=PUT" method="POST">
+                <img src="/images/<%= image %>" alt="imagen de producto">
                 <label for="name">Nombre de producto</label>
                 <input type="text" value="<%= name %>" name="name" id="nombre" placeholder="Nombre del producto">
                 <label for="marca">Marca del producto</label>

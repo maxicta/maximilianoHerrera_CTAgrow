@@ -8,6 +8,9 @@ const multer = require('multer');
 const upload = multer({ dest: 'public/images/users' });
 const { validationResult } = require("express-validator");
 const { name } = require('ejs');
+const { title } = require('process');
+const express = require('express');
+
 
 
 const usersController = {
@@ -16,67 +19,77 @@ const usersController = {
         res.render('./users/login', { title: 'Iniciar sesion' });
     },
 
-    /* processLogin: (req,res,next) => {
-        const {email} = req.body;
-        const users = readFile('users.json');
-        const errors = validationResult(req);
-        //const user = users.find(user => user.email == email);
-        console.log(req.body)
-        if (errors.array().length > 0) {
-            res.render('./users/login', {
-                title: 'inicio de sesion',
-                errors: errors.mapped(),
-                email,
-            });
-        }else{
-            //email = req.body
-            const users = readFile('users.json');
-            const user = users.find(user => user.email === email);
-
-            const { email, name , id } = user;
-            console.log(name);
-            req.session.user = { email, name, id };
-
-            if(user){
-                res.render('./users/profile', {...user});
-            }else{
-                res.render('./users/login', { title: 'Iniciar sesion' });
-            }
-        }
-    }, */
-
-
-    processLogin: (req, res, next) => {
-        const { email } = req.body;
-        const users = readFile('users.json');
-        const errores = validationResult(req);
+    processLogin: async (req, res, next) => {
+        try {
+            const errors = validationResult(req);
+            const email = req.body.email;
     
-        if (errores.array().length > 0) {
-            res.render("users/login", {
-                errores: errores.mapped(),
-                email,
-            });
-        } else {
-            const user = users.find((user) => user.email === email);
-    
-            if (user) {
-                const { email, lastName, id } = user; 
-    
-                req.session.user = { email, name, id };
-                //console.log("body", req.body);
-    
-                if (req.body.recuerdame) {
-                    res.cookie("user", { email, lastName, id }, { maxAge: 1000 * 60 * 30 });
-                }
-                res.redirect(`/users/profile/${id}`);
-            } else {
-                res.render("users/login", {
-                    errores: { email: { msg: "Usuario no encontrado" } },
-                    email,
+            if (errors.array().length > 0) {
+                return res.render('./users/login', {
+                    title: 'inicio de sesion',
+                    errors: errors.mapped(),
+                    email
                 });
             }
+    
+            const users = JSON.parse(readFile('users.json'));
+            const user = users.find(user => user.email === email);
+    
+            if (!user) {
+                return res.render('./users/login', {
+                    title: 'Iniciar sesion',
+                    error: 'Usuario no encontrado'
+                });
+            }
+    
+            // Guarda los datos en la sesión
+            req.session.user = {
+                email: user.email,
+                name: user.name,
+                id: user.id
+            };
+    
+            // Espera a que la sesión se guarde
+            await new Promise(resolve => req.session.save(resolve));
+    
+            // Verifica la sesión después de guardar
+            if (req.session.user) {
+                return res.render('./users/profile', {
+                    ...user,
+                    isLoggedIn: true,
+                    title: 'Perfil'
+                });
+            } else {
+                return res.status(401).json({ 
+                    error: 'No hay sesión iniciada' 
+                });
+            }
+        } catch (error) {
+            next(error);
         }
-    },
+    }
+
+
+    /* processLogin: (req, res, next) => {
+        const { email } = req.body;
+        const users = JSON.parse(readFile('users.json'));
+        const user = users.find((user) => user.email === email);
+        const {name, id } = user;
+        
+        
+        
+        
+        
+        
+        req.session.user = { email, name, id };
+        //console.log("body", req.body);
+        //return res.send(user);
+        
+        res.redirect(`/users/profile/${id}`);
+        
+        } */
+        
+    ,
     
 
 
@@ -114,17 +127,16 @@ const usersController = {
     },
 
     profile: (req,res) => {
-        const users = readFile('users.json');
+        const users = JSON.parse(readFile('users.json'));
         const id = req.params.id;
         const user = users.find(user => user.id == id);
-        //console.log(user);
-        
-        
-        res.render('./users/profile', {...user, title: "Perfil"} );
+        console.log(req.session.user);
+
+        res.render('users/profile', {...user, title: "Perfil"} );
     },
 
     editProfile: (req,res) => {
-        const users = readFile('users.json');
+        const users = JSON.parse(readFile('users.json'));
         const id = req.params.id;
         const user = users.find(user => user.id == id);
         res.render('./users/profileEdit', {...user, title: "Editar perfil"});
@@ -132,7 +144,7 @@ const usersController = {
     },
 
     updateProfile: (req,res) => {
-        const users = readFile('users.json');
+        const users = JSON.parse(readFile('users.json'));
         const id = req.params.id;
         const user = users.find(user => user.id == id);
         
@@ -152,7 +164,7 @@ const usersController = {
             
             writeFile('users.json', usersModify);
     
-        res.render('./users/profile', {...user});
+        res.render('./users/profile', {...user, title: "Perfil"});
     },
 
     deleteProfile: (req,res) => {

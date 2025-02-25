@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 const {login, register, storeUser, profile, processLogin, editProfile, updateProfile, deleteProfile } = require('../controllers/usersController');
-const loginValidate = require('../middlewares/loginValidate.js');
-const upload = require('../middlewares/uploadUser.js')
+const loginVerify = require('../middlewares/loginValidate.js');
+const upload = require('../middlewares/uploadUser.js');
 
 /* GET users listing. */
 // /users
-router.get('/login', /* loginValidate, */ login);
-router.post('/login',processLogin);
+router.get('/login', loginVerify, login);
+router.post('/login', processLogin);
 
 router.get('/register', register);
 router.post('/register', storeUser);

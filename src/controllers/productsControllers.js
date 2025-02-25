@@ -7,7 +7,7 @@ const upload = require('../middlewares/uploadProduct');
 
 const productsController = {
     home: (req,res) => {
-        const products = readFile('products.json');
+        const products = JSON.parse(readFile('products.json'));
         res.render('home',{ products: products , title: 'Lista de productos' });
 
     },
@@ -48,8 +48,10 @@ const productsController = {
     
     edit: (req,res) => {
         const {id} = req.params;
-        const products = readFile('products.json');
+        const products = JSON.parse(readFile('products.json'));
         const product = products.find(product => product.id == id);
+        console.log(product);
+        
         
         res.render('admin/productEdit',{...product, title: 'Editar producto'});
         

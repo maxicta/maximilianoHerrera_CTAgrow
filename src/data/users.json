@@ -46,12 +46,14 @@
   },
   {
     "id": "a8e72b5d-cba0-43ea-9cce-51dea86aff4e",
+    "name": "carlos",
     "lastName": "acevedo",
     "email": "carlitos@gmail.com",
     "password": "$2b$10$usj5kWMWPwiOso3BDgO5Gu7e59HbfZKhd5NVFfdyqHd8bD3GFmLEu",
     "token": null,
     "validate": false,
     "lock": false,
-    "rol": "user"
+    "rol": "user",
+    "image": "imageDefault.png"
   }
 ]

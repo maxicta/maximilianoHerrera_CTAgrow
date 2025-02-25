@@ -82,6 +82,14 @@ input {
 
 @media (min-width: 768px) {
 
+    .menu-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+        gap: 1rem;
+    }
+
     .nav-header {
         display: flex;
         flex-direction: row; 
@@ -92,23 +100,32 @@ input {
         flex-direction: row;
     }
 
-    .cinta-header-center input {
-        position: relative;
-        translate: 25vw;
-        height: 10vh;
+    .search-header {
+        display: flex;
+        justify-content: start;
         width: 100%;
+    }
+
+    .cinta-header-center input {
+        
+        height: 7vh;
+        width: 80%;
         align-self: center;
     }
 
     .cinta-header-center img{
         position: relative;
-        translate: -25vw -1vh;
+        
         
     }
 
     .log-user-icon {
         display: flex;
         justify-content:space-around;
+        width: 30%;
+    }
+
+    .banner {
         width: 100%;
     }
 

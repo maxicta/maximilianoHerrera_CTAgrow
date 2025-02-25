@@ -8,8 +8,10 @@ const indexControllers = {
     },
     
     admin: (req, res) => {
-        const products = readFile('products.json')
+        const products = JSON.parse(readFile('products.json'))
         res.render('admin', {products, title: 'Administrador de productos'})
+        console.log(products);
+        
     }
 }
 
