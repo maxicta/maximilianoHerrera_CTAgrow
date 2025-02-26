@@ -1,15 +1,9 @@
-const { log, profile } = require('console');
-const fs = require('fs');
-
-const { readFile, writeFile } = require('../data/fileSync');
+const { log } = require('console');
+const { readFile, writeFile, parseFile } = require('../data/fileSync');
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
-const multer = require('multer');
-const upload = multer({ dest: 'public/images/users' });
 const { validationResult } = require("express-validator");
-const { name } = require('ejs');
-const { title } = require('process');
-const express = require('express');
+
 
 
 
@@ -23,8 +17,12 @@ const usersController = {
         try {
             const errors = validationResult(req);
             const email = req.body.email;
+            console.log("email", req.body);
+            
     
             if (errors.array().length > 0) {
+                console.log(errors.mapped());
+                
                 return res.render('./users/login', {
                     title: 'inicio de sesion',
                     errors: errors.mapped(),
@@ -36,6 +34,8 @@ const usersController = {
             const user = users.find(user => user.email === email);
     
             if (!user) {
+                console.log('Usuario no encontrado desde processLogin');
+                
                 return res.render('./users/login', {
                     title: 'Iniciar sesion',
                     error: 'Usuario no encontrado'
@@ -48,6 +48,9 @@ const usersController = {
                 name: user.name,
                 id: user.id
             };
+            console.log("usuario logueado desde processLogin");
+            console.log(req.session.user);
+            
     
             // Espera a que la sesión se guarde
             await new Promise(resolve => req.session.save(resolve));
@@ -55,7 +58,7 @@ const usersController = {
             // Verifica la sesión después de guardar
             if (req.session.user) {
                 return res.render('./users/profile', {
-                    ...user,
+                    user,
                     isLoggedIn: true,
                     title: 'Perfil'
                 });
@@ -90,7 +93,11 @@ const usersController = {
         } */
         
     ,
-    
+    logout: (req, res) => {
+        req.session.destroy();
+        res.clearCookie("user");
+        res.redirect("/users/login");
+    },
 
 
     register: (req,res) => {
@@ -101,7 +108,7 @@ const usersController = {
     storeUser: (req,res) => {
         try{
             //const id = uuid.v4();
-            const users = readFile('users.json');
+            const users = parseFile(readFile('users.json'));
             const {name,
                 lastName,
                 email,
@@ -126,13 +133,30 @@ const usersController = {
         }
     },
 
-    profile: (req,res) => {
+    profile: (req, res) => {
+        // Primero verifica si hay sesión
+        if (!req.session.user) {
+            return res.redirect('/users/login');
+        }
+    
+        // Lee el archivo users.json
         const users = JSON.parse(readFile('users.json'));
         const id = req.params.id;
+        
+        // Busca el usuario
         const user = users.find(user => user.id == id);
-        console.log(req.session.user);
-
-        res.render('users/profile', {...user, title: "Perfil"} );
+        
+        // Si no encuentra el usuario, redirige a login
+        if (!user) {
+            return res.redirect('/users/login');
+        }
+    
+        // Renderiza la vista con el usuario y la sesión
+        res.render('users/profile', {
+            user: user,
+            sessionUser: req.session.user,
+            title: "Perfil"
+        });
     },
 
     editProfile: (req,res) => {

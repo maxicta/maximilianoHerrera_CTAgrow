@@ -33,7 +33,17 @@ function writeFile(filePath, data) {
     }
 }
 
+const parseFile = (json) => {
+    return JSON.parse(json);
+}
+
+const stringifyFile = (objeto) => {
+    return JSON.stringify(objeto);
+}
+
 module.exports = {
     readFile,
-    writeFile
+    writeFile,
+    parseFile,
+    stringifyFile
 };
