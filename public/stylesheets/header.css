@@ -4,7 +4,7 @@ header {
 }
 
 .top-bar {
-    background-color: #3a9637;
+    background-color: var(--verde);
 
 }
 
@@ -54,11 +54,21 @@ header {
     justify-content: center;
 }
 
+.navbar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
 .nav-header li {
     display: flex;
     justify-content: center;
     background-color: #3a9637;
     width: 100%;
+    
     transition: 0.2s ease;
 }
 .nav-header li:hover{
