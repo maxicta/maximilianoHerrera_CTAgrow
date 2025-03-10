@@ -6,7 +6,7 @@ const loginVerify = (req, res, next) => {
 
         res.redirect("/users/profile/" + req.session.user.id);
     } else {
-        console.log("usuario no logueado");
+        console.log("usuario no logueado desde loginValidate");
         next();
     }
 };

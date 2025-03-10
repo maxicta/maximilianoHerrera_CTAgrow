@@ -34,6 +34,9 @@
 }
 
 .detail-product button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: greenyellow;
     background-color: black;
     border: 2px solid greenyellow;

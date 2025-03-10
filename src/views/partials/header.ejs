@@ -10,7 +10,7 @@
                 <a href="/product"><img id="logo-header" src="/images/logo.png"></a>
             </div>
             <div class="search-header">
-                <input type="text" value="En que podemos ayudarte?">
+                <input type="text" placeholder="Que estas buscando?">
             </div>
         </div>
         <div class="menu-nav">
@@ -21,6 +21,7 @@
                         <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
                         <li>Bienvenido: <%= user.name %></li>
                         <li><a href="/users/logout">Cerrar Sesión</a></li>
+                        <li><a href="/admin">Admin</a></li>
                     <% } else { %>
                         <li><a href="/users/login">Iniciar Sesión</a></li>
                         <li><a href="/users/register">Registrarse</a></li>

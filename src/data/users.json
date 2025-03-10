@@ -10,14 +10,98 @@
   },
   {
     "id": "1994a4d0-2a55-4c1c-9d0f-68710500ec95",
-    "name": "Maximiliano",
-    "lastName": "herrera",
+    "name": "Maximiliano Ezequiel",
+    "lastName": "Herrera",
     "email": "maxi@gmail.com",
     "password": "$2b$10$mGeqdeZY9x9dCXI7L1U2CuiMPUYxPF6agThJfQY/f5PAjLTVbAeWy",
     "token": null,
     "validate": false,
     "lock": false,
     "rol": "user",
-    "image": "1740594529553-WhatsApp Image 2025-02-05 at 12.03.19.jpeg"
+    "image": "1741197278436-OIP.jfif"
+  },
+  {
+    "id": "ca49a9e7-40d5-4d74-8906-218bf0379a05",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$/EmbgbLYAxrXMgYA9oyeH.UdNHp2o8zEZxb1s2JWCQUkdYDaB1p2e",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "cd00986c-62ba-45cd-a7d7-b4d8011c5ddd",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$ikxLAOONnMfjjp8FWiUxB./x38pSpjSKqoHrEzsj.ADsMgsMJtuEi",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "dcb2ec4a-aa5d-42bc-aaa4-ab4ac8754591",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$mK1ulqzIYCYKgUDNcXRLk.76F157Hp3BDjqPj9RoBpl/M4eIJ/PYm",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "2e51f4e6-a907-4e26-8b3b-42cb6712ab30",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$Lui9hOEWKEEyfa/YTwpqM.C3Z8eLZuDsp6Y0j6RMq9IAT1qSZDfpu",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "76c74542-e14d-46de-9d07-d4c147de0a63",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$CWXS4Q5RDTZFmaCbX8kOtuQ3wZxQPeKxkgCA0eRbQ3vGV/ec2Egay",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "425722e9-7276-4f77-9881-39348c132198",
+    "name": "Maximiliano",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$4dNtYlr9.JGkvi2KRBmdQOwUvmgfwLyQGMdWdUuR5S7RNH8JC.PGK",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
+  },
+  {
+    "id": "591e403f-a18b-49f2-b93a-bd3174465442",
+    "name": "Maxi",
+    "lastName": "herrera",
+    "email": "maxi@gmail.com",
+    "password": "$2b$10$jcJ3RNXSfsodrAfE0vyHr.klLwcn8LM0vBYpItXu0LjhnByu2LBQe",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rol": "user",
+    "image": "imageDefault.png"
   }
 ]

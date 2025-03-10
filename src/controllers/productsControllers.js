@@ -1,6 +1,6 @@
 //const { log } = require('console');
 const fs = require('fs');
-const { readFile, writeFile } = require('../data/fileSync');
+const { readFile, writeFile, parseFile } = require('../data/fileSync');
 const { v4: uuidv4 } = require('uuid');
 const { title } = require('process');
 const upload = require('../middlewares/uploadProduct');
@@ -13,7 +13,7 @@ const productsController = {
     },
 
     detail: (req,res,next) => {
-        const products = readFile('products.json');
+        const products = parseFile(readFile('products.json'));
         const id = req.params.id;
         const product = products.find(product => product.id == id);        
         

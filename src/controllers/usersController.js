@@ -113,6 +113,19 @@ const usersController = {
                 lastName,
                 email,
                 password} = req.body;
+            const errores = validationResult(req);
+
+            if (errores.array().length > 0) {
+                res.render("users/register",{
+                    title:'registre sus datos',
+                    errores: errores.mapped(),
+                    name,
+                    email,
+                    password,
+                });
+            }else{
+                    console.log('proces true desde store');
+                }
             users.push({
                 id : uuid.v4(),
                 name,
@@ -188,11 +201,11 @@ const usersController = {
             
             writeFile('users.json', usersModify);
     
-        res.render('./users/profile', {...user, title: "Perfil"});
+        res.render('./users/profile', {user, title: "Perfil"});
     },
 
     deleteProfile: (req,res) => {
-        const users = readFile('users.json');
+        const users = parseFile(readFile('users.json'));
         const id = req.params.id;
         const userModify = users.filter(user => user.id.toString() !== id);
         console.log(userModify);
