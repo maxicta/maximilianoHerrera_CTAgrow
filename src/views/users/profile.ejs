@@ -4,7 +4,8 @@
 
 <body>
     <%- include('../partials/header') %>
-    <div>
+    <main>
+    <div class="info-profile">
         <h1>Perfil de Usuario</h1>
         <img width=150 src="/images/users/<%= user.image %>" alt="imagen de perfil de usuasrio <%= user.name %>">
         <p>Nombre: <%= user.name %></p>
@@ -16,5 +17,6 @@
     <form action="/users/remove/<%= user.id %>?_method=DELETE" method="post">
         <button>Eliminar cuenta</button>
     </form>
+    </main>
 </body>
 </html>

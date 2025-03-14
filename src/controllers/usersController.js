@@ -78,12 +78,7 @@ const usersController = {
         const users = JSON.parse(readFile('users.json'));
         const user = users.find((user) => user.email === email);
         const {name, id } = user;
-        
-        
-        
-        
-        
-        
+
         req.session.user = { email, name, id };
         //console.log("body", req.body);
         //return res.send(user);
@@ -105,7 +100,7 @@ const usersController = {
 
     },
 
-    storeUser: (req,res) => {
+    storeUser: (req,res, next) => {
         try{
             //const id = uuid.v4();
             const users = parseFile(readFile('users.json'));
@@ -114,6 +109,8 @@ const usersController = {
                 email,
                 password} = req.body;
             const errores = validationResult(req);
+            //console.log(errores);
+            
 
             if (errores.array().length > 0) {
                 res.render("users/register",{
@@ -125,21 +122,21 @@ const usersController = {
                 });
             }else{
                     console.log('proces true desde store');
+                    users.push({
+                        id : uuid.v4(),
+                        name,
+                        lastName,
+                        email,
+                        password : bcrypt.hashSync(password, 10),
+                        token : null,
+                        validate : false,
+                        lock : false,
+                        rol : 'user',
+                        image : 'imageDefault.png'
+                    });
+                    writeFile('users.json', users);
+                    res.render('users/login', { title: 'Iniciar sesion' });
                 }
-            users.push({
-                id : uuid.v4(),
-                name,
-                lastName,
-                email,
-                password : bcrypt.hashSync(password, 10),
-                token : null,
-                validate : false,
-                lock : false,
-                rol : 'user',
-                image : 'imageDefault.png'
-            });
-            writeFile('users.json', users);
-            res.render('users/login', { title: 'Iniciar sesion' });
         }catch(error){
             console.error('Error al almacenar el usuario:', error);
         res.status(500).send('Error al almacenar el usuario');

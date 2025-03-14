@@ -18,12 +18,12 @@ module.exports = [
     .custom(value => {
         console.log("value:",value);
         const user = users.find(user => user.email == value);
-        console.log('paso por register validator','user',user,'value',value)
+        //console.log('paso por register validator','user',user,'value',value)
         
         if (user) {
             console.log('El email ya está registrado');
             throw new Error('El email ya está registrado');
         }
-        return false;
+        return true;
     }).bail(),
 ]
