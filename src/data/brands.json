@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Gavita"
+    },
+    {
+        "id": 2,
+        "name": "Atami"
+    },
+    {
+        "id": 3,
+        "name": "Plagron"
+    },
+    {
+        "id": 4,
+        "name": "General Hydroponics"
+    },
+    {
+        "id": 5,
+        "name": "Philips GrowWise",
+        "createdAt": "2023-01-19T14:15:00Z"
+    },
+    {
+        "id": 6,
+        "name": "Root!t",
+        "createdAt": "2023-01-20T10:00:00Z"
+    },
+    {
+        "id": 7,
+        "name": "BIOBIZZ"
+    },
+    {
+        "id": 8,
+        "name": "CANNA"
+    },
+    {
+        "id": 9,
+        "name": "Advanced Nutrients"
+    },
+    {
+        "id": 10,
+        "name": "Hesi"
+    }
+]

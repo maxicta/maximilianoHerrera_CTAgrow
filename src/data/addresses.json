@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "province": 1,
+        "city": 3,
+        "street": "Calle Gran Vía",
+        "height": 45,
+        "userId": 1
+    },
+    {
+        "id": 2,
+        "province": 2,
+        "city": 4,
+        "street": "Passeig de Gracia",
+        "height": 78,
+        "userId": 2
+    },
+    {
+        "id": 3,
+        "province": 4,
+        "city": 1,
+        "street": "Calle Colón",
+        "height": 123,
+        "userId": 1
+    }
+]

@@ -1,23 +1,39 @@
+
 [
   {
     "id": 1,
-    "name": "Eric",
-    "lastName": "Mena",
-    "email": "menaericdaniel@gmail.com",
-    "password": "password123",
-    "category": "admin",
-    "image": "1739835196045-1000_F_358108692_9YeDVbAdz5cctkFBjGKDXMfGwmsbmigl.jpg"
+    "name": "Ana",
+    "surname": "García",
+    "email": "ana.garcia@ejemplo.com",
+    "password": "contraseña123",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "validate": true,
+    "lock": true,
+    "rolId": 1,
+    "image": "1741636175340-OIP.jfif"
   },
   {
-    "id": "ca49a9e7-40d5-4d74-8906-218bf0379a05",
+    "id": 2,
+    "name": "Carlos",
+    "surname": "Martínez",
+    "email": "carlos.martinez@ejemplo.com",
+    "password": "contraseña456",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "validate": true,
+    "lock": true,
+    "rolId": 2,
+    "image": "1741636175340-OIP.jfif"
+  },
+  {
+    "id": 3,
     "name": "Maximiliano",
-    "lastName": "Herrera",
+    "surname": "Herrera",
     "email": "maxi@gmail.com",
-    "password": "$2b$10$/EmbgbLYAxrXMgYA9oyeH.UdNHp2o8zEZxb1s2JWCQUkdYDaB1p2e",
+    "password": "2670Toys.",
     "token": null,
     "validate": false,
     "lock": false,
-    "rol": "user",
+    "rolId": 1,
     "image": "1741636175340-OIP.jfif"
   }
 ]
