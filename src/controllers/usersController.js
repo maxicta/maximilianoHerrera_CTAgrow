@@ -1,8 +1,8 @@
-const { log } = require('console');
-const { readFile, writeFile, parseFile } = require('../data/fileSync');
+const { User } = require("../database/models");
 const uuid = require('uuid');
 const bcrypt = require('bcrypt');
 const { validationResult } = require("express-validator");
+const { where } = require("sequelize");
 
 
 
@@ -17,7 +17,7 @@ const usersController = {
         try {
             const errors = validationResult(req);
             const email = req.body.email;
-            console.log("email", req.body);
+            //console.log("email", req.body);
             
     
             if (errors.array().length > 0) {
@@ -29,9 +29,8 @@ const usersController = {
                     email
                 });
             }
-    
-            const users = JSON.parse(readFile('users.json'));
-            const user = users.find(user => user.email === email);
+            const user = User.findOne({ where: {email}});
+            const {name, id, image} = user;
     
             if (!user) {
                 console.log('Usuario no encontrado desde processLogin');
@@ -103,11 +102,7 @@ const usersController = {
     storeUser: (req,res, next) => {
         try{
             //const id = uuid.v4();
-            const users = parseFile(readFile('users.json'));
-            const {name,
-                lastName,
-                email,
-                password} = req.body;
+            const { name, email, password} = req.body;
             const errores = validationResult(req);
             //console.log(errores);
             
@@ -122,20 +117,17 @@ const usersController = {
                 });
             }else{
                     console.log('proces true desde store');
-                    users.push({
-                        id : uuid.v4(),
-                        name,
-                        lastName,
-                        email,
-                        password : bcrypt.hashSync(password, 10),
-                        token : null,
-                        validate : false,
-                        lock : false,
-                        rol : 'user',
-                        image : 'imageDefault.png'
-                    });
-                    writeFile('users.json', users);
-                    res.render('users/login', { title: 'Iniciar sesion' });
+                    bcrypt.hash(password, 10, async (err, hash) => {
+                        if (err) {
+                            throw new Error('Error en el hash')
+                        }
+                        await User.create({
+                            name,
+                            email,
+                            password: hash
+                        })
+                        res.render('users/login', { title: 'Iniciar sesion' });
+                    })
                 }
         }catch(error){
             console.error('Error al almacenar el usuario:', error);
@@ -150,11 +142,9 @@ const usersController = {
         }
     
         // Lee el archivo users.json
-        const users = JSON.parse(readFile('users.json'));
         const id = req.params.id;
-        
         // Busca el usuario
-        const user = users.find(user => user.id == id);
+        const user = User.findByPk(id)
         
         // Si no encuentra el usuario, redirige a login
         if (!user) {
