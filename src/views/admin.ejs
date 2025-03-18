@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/headerAdmin.css">
+    <script src="https://kit.fontawesome.com/998d7ec1c1.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="Admin-body">
+        <header>
+            <h1>PRODUCTOS</h1>
+        </header>
+        <main>
+            <div class="admin-products">
+                <% products.forEach(product => { %>
+                    <div class="product">
+                        <h3><%= product.name %></h3>
+                        <p>$<%= product.price %></p>
+                        <div class="buttons">    
+                            <button><a href="/product/edit/<%= product.id %>"><i class="fa-solid fa-pen-to-square"></i></a></button>
+                            <form action="/product/delete/<%= product.id %>?_method=DELETE" method="POST">
+                                <button><i class="fa-solid fa-trash"></i></button>
+                            </form>
+                        </div>    
+                    </div>
+                <% }) %>
+            </div>
+            <a href="/product/add"><button>AGREGAR PRODUCTOS</button></a>
+        </main>
+    </div>
+</body>
+</html>

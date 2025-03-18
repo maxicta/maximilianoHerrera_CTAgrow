@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "quantity": 1,
+        "ordershopId": 1,
+        "productId": 10
+    },
+    {
+        "id": 2,
+        "quantity": 1,
+        "ordershopId": 1,
+        "productId": 2
+    },
+    {
+        "id": 3,
+        "quantity": 3,
+        "ordershopId": 2,
+        "productId": 13
+    },
+    {
+        "id": 4,
+        "quantity": 1,
+        "ordershopId": 3,
+        "productId": 4
+    }
+]

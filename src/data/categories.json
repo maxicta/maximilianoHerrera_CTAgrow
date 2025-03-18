@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Iluminación"
+    },
+    {
+        "id": 2,
+        "name": "Sistemas de Riego"
+    },
+    {
+        "id": 3,
+        "name": "Nutrientes"
+    },
+    {
+        "id": 4,
+        "name": "Tiempo y Medida"
+    },
+    {
+        "id": 5,
+        "name": "Control Ambiental"
+    }
+]

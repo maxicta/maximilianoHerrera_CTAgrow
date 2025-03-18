@@ -1,0 +1,19 @@
+            <!-- <% productos.forEach((producto)=> { %>
+                <article class="products_main_article">
+                    <div>
+                        <a href="/products/<%= producto.id %>/detail">
+                            <img src="<%= producto.imagen %>" alt="Es la imagen del producto <%= ( producto.producto) %>" />
+                        </a>
+                    </div>
+                    <div class="info-product">
+                        <h3>
+                            <%= ( producto.modelo) %>
+                        </h3>
+                        <h4>
+                            <i class="fa-solid fa-dollar-sign"></i>
+                            <%= producto.precio %>
+                        </h4>
+                        <button class="boton_de_compra">Comprar <i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
+                </article>
+                <% }); %> --> 

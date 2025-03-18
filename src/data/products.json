@@ -1,0 +1,202 @@
+[
+    {
+        "id": 1,
+        "name": "Gavita Pro 1650e LED",
+        "price": 799.99,
+        "image": "https://growshop.example.com/gavita-pro-1650e.jpg",
+        "stock": 15,
+        "categorieId": 1,
+        "brandId": 1,
+        "ordershopId": 1
+    },
+    {
+        "id": 2,
+        "name": "Atami ATA Rootfast",
+        "price": 24.99,
+        "image": "https://growshop.example.com/atami-rootfast.jpg",
+        "stock": 50,
+        "categorieId": 3,
+        "brandId": 2,
+        "ordershopId": 2
+    },
+    {
+        "id": 3,
+        "name": "Plagron Alga Bloom",
+        "price": 54.99,
+        "image": "https://growshop.example.com/plagron-alga-bloom.jpg",
+        "stock": 35,
+        "categorieId": 3,
+        "brandId": 3,
+        "ordershopId": 3
+    },
+    {
+        "id": 4,
+        "name": "GH Flora Series",
+        "price": 69.99,
+        "image": "https://growshop.example.com/gh-flora-series.jpg",
+        "stock": 40,
+        "categorieId": 3,
+        "brandId": 4,
+        "ordershopId": 1
+    },
+    {
+        "id": 5,
+        "name": "Philips GrowWise Master SON-T PIA Plus",
+        "price": 499.99,
+        "image": "https://growshop.example.com/philips-master-son-t.jpg",
+        "stock": 12,
+        "categorieId": 1,
+        "brandId": 5,
+        "ordershopId": 2
+    },
+    {
+        "id": 6,
+        "name": "Root!t First Feed",
+        "price": 14.99,
+        "image": "https://growshop.example.com/rootit-first-feed.jpg",
+        "stock": 60,
+        "categorieId": 3,
+        "brandId": 6,
+        "ordershopId": 3
+    },
+    {
+        "id": 7,
+        "name": "BIOBIZZ Fish-Mix",
+        "price": 44.99,
+        "image": "https://growshop.example.com/biobizz-fish-mix.jpg",
+        "stock": 45,
+        "categorieId": 3,
+        "brandId": 7,
+        "ordershopId": 1
+    },
+    {
+        "id": 8,
+        "name": "CANNA Terra Professional",
+        "price": 59.99,
+        "image": "https://growshop.example.com/canna-terra-pro.jpg",
+        "stock": 30,
+        "categorieId": 3,
+        "brandId": 8,
+        "ordershopId": 2
+    },
+    {
+        "id": 9,
+        "name": "Advanced Nutrients Sensi Bloom A+B",
+        "price": 89.99,
+        "image": "https://growshop.example.com/an-sensi-bloom.jpg",
+        "stock": 25,
+        "categorieId": 3,
+        "brandId": 9,
+        "ordershopId": 3
+    },
+    {
+        "id": 10,
+        "name": "Hesi Power Bloom",
+        "price": 39.99,
+        "image": "https://growshop.example.com/hesi-power-bloom.jpg",
+        "stock": 55,
+        "categorieId": 3,
+        "brandId": 10,
+        "ordershopId": 1
+    },
+    {
+        "id": 11,
+        "name": "Atami ATA Coco",
+        "price": 49.99,
+        "image": "https://growshop.example.com/atami-coco.jpg",
+        "stock": 40,
+        "categorieId": 3,
+        "brandId": 2,
+        "ordershopId": 2
+    },
+    {
+        "id": 12,
+        "name": "Philips GrowWise LED Production Module",
+        "price": 299.99,
+        "image": "https://growshop.example.com/philips-led-module.jpg",
+        "stock": 20,
+        "categorieId": 1,
+        "brandId": 5,
+        "ordershopId": 3
+    },
+    {
+        "id": 13,
+        "name": "General Hydroponics pH Control Kit",
+        "price": 34.99,
+        "image": "https://growshop.example.com/gh-ph-kit.jpg",
+        "stock": 35,
+        "categorieId": 4,
+        "brandId": 4,
+        "ordershopId": 1
+    },
+    {
+        "id": 14,
+        "name": "Root!t Propagator Pro",
+        "price": 79.99,
+        "image": "https://growshop.example.com/rootit-propagator.jpg",
+        "stock": 25,
+        "categorieId": 3,
+        "brandId": 6,
+        "ordershopId": 2
+    },
+    {
+        "id": 15,
+        "name": "BIOBIZZ Bio-Grow",
+        "price": 39.99,
+        "image": "https://growshop.example.com/biobizz-bio-grow.jpg",
+        "stock": 50,
+        "categorieId": 3,
+        "brandId": 7,
+        "ordershopId": 3
+    },
+    {
+        "id": 16,
+        "name": "CANNA Boost Accelerator",
+        "price": 74.99,
+        "image": "https://growshop.example.com/canna-boost.jpg",
+        "stock": 30,
+        "categorieId": 3,
+        "brandId": 8,
+        "ordershopId": 1
+    },
+    {
+        "id": 17,
+        "name": "Advanced Nutrients Big Bud",
+        "price": 69.99,
+        "image": "https://growshop.example.com/an-big-bud.jpg",
+        "stock": 40,
+        "categorieId": 3,
+        "brandId": 9,
+        "ordershopId": 2
+    },
+    {
+        "id": 18,
+        "name": "Hesi Root Complex",
+        "price": 29.99,
+        "image": "https://growshop.example.com/hesi-root-complex.jpg",
+        "stock": 45,
+        "categorieId": 3,
+        "brandId": 10,
+        "ordershopId": 3
+    },
+    {
+        "id": 19,
+        "name": "Atami ATA PK 13-14",
+        "price": 44.99,
+        "image": "https://growshop.example.com/atami-pk.jpg",
+        "stock": 35,
+        "categorieId": 3,
+        "brandId": 2,
+        "ordershopId": 1
+    },
+    {
+        "id": 20,
+        "name": "General Hydroponics CaliMagic",
+        "price": 49.99,
+        "image": "https://growshop.example.com/gh-calimagic.jpg",
+        "stock": 30,
+        "categorieId": 3,
+        "brandId": 4,
+        "ordershopId": 2
+    }
+]

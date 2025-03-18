@@ -1,0 +1,52 @@
+<header>
+    <div>
+        <div class="top-bar">
+            <p>DE 3 A 6 CUOTAS SIN INTERES</p>
+        </div>
+    </div>
+    <div class="cinta-header">
+        <div class="cinta-header-center">
+            <div  class="log-user-icon">
+                <a href="/product"><img id="logo-header" src="/images/logo.png"></a>
+            </div>
+            <div class="search-header">
+                <input type="text" placeholder="Que estas buscando?">
+            </div>
+        </div>
+        <div class="menu-nav">
+            
+            <nav class="navbar">
+                <ul>
+                    <% if (typeof user !== 'undefined' && user) { %>
+                        <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
+                        <li>Bienvenido: <%= user.name %></li>
+                        <li><a href="/users/logout">Cerrar Sesión</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                    <% } else { %>
+                        <li><a href="/users/login">Iniciar Sesión</a></li>
+                        <li><a href="/users/register">Registrarse</a></li>
+                    <% } %>
+                </ul>
+            </nav>
+            <!-- 
+            <ul class="nav-header">
+                <a href="">
+                    <li>SEMILLAS</li>
+                </a>
+                <a href="">
+                    <li>ABONOS</li>
+                </a>
+                <a href="">
+                    <li>FERTILIZANTE</li>
+                </a>
+                <a href="">
+                    <li>PESTICIDA</li>
+                </a>
+                <a href="/admin">
+                    <li>ADMIN</li>
+                </a>
+            </ul> -->
+        </div>
+    </div>
+
+</header>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+    <main>
+    <div class="info-profile">
+        <h1>Perfil de Usuario</h1>
+        <img width=150 src="/images/users/<%= user.image %>" alt="imagen de perfil de usuasrio <%= user.name %>">
+        <p>Nombre: <%= user.name %></p>
+        <p>Apellido: <%= user.surname %></p>
+        <p>Email: <%= user.email %></p>
+    </div>
+    <button><a href="/users/editprofile/<%= user.id %>">Actualizar datos</a></button>
+
+    <form action="/users/remove/<%= user.id %>?_method=DELETE" method="post">
+        <button>Eliminar cuenta</button>
+    </form>
+    </main>
+</body>
+</html>

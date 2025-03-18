@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <section class="form-login">
+            <h3>Crear Cuenta</h3>
+            
+            <form class="form-login" action="/users/register" method="post">
+                <input type="text" name="name" id="nombre" placeholder="Nombre">
+                <input type="text"  name="surname" id="apellido" placeholder="Apellido">
+                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="password" name="password" id="password" placeholder="Contraseña">
+                <input type="password" name="password2" id="password2" placeholder="Repetir Contraseña">
+                <button id="button-registro">REGISTRAR</button>
+            </form>
+        </section>
+    </main>
+
+
+    <%- include('../partials/footer') %>
+
+</body>
+</html>

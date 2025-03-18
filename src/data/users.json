@@ -1,0 +1,39 @@
+
+[
+  {
+    "id": 1,
+    "name": "Ana",
+    "surname": "García",
+    "email": "ana.garcia@ejemplo.com",
+    "password": "contraseña123",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "validate": true,
+    "lock": true,
+    "rolId": 1,
+    "image": "1741636175340-OIP.jfif"
+  },
+  {
+    "id": 2,
+    "name": "Carlos",
+    "surname": "Martínez",
+    "email": "carlos.martinez@ejemplo.com",
+    "password": "contraseña456",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+    "validate": true,
+    "lock": true,
+    "rolId": 2,
+    "image": "1741636175340-OIP.jfif"
+  },
+  {
+    "id": 3,
+    "name": "Maximiliano",
+    "surname": "Herrera",
+    "email": "maxi@gmail.com",
+    "password": "2670Toys.",
+    "token": null,
+    "validate": false,
+    "lock": false,
+    "rolId": 1,
+    "image": "1741636175340-OIP.jfif"
+  }
+]

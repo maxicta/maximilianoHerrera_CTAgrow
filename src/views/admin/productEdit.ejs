@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+
+
+    <main>
+        <h2>MODIFICAR PRODUCTO</h2>
+        <section class="form-login">
+                        
+            <form class="form-add-product" action="/product/edit/<%= id %>?_method=PUT" method="POST">
+                <img src="/images/products/<%= image %>" alt="imagen de producto">
+
+                <label for="name">Nombre de producto</label>
+                <input type="text" value="<%= name %>" name="name" id="nombre" placeholder="Nombre del producto">
+
+                <label for="brand">Marca del producto</label>
+                <input type="text" value="<%= brand %>" name="brand" id="apellido" placeholder="Marca del producto">
+
+                <input type="file"  id="imagen" placeholder="Imagen del producto">
+
+                <input type="text" id="categoria" placeholder="Categoria del producto">
+
+                <label for="price">Precio del producto</label>
+                <input type="text" value="<%= price %>" name="price" id="price" placeholder="Precio del producto">
+                
+                <button id="button-confirm-add">CONFIRMAR CAMBIOS</button>
+            </form>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+
+</body>
+</html>
