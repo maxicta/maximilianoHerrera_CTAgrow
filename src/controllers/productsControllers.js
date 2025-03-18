@@ -1,99 +1,116 @@
 //const { log } = require('console');
-const fs = require('fs');
-const { readFile, writeFile, parseFile } = require('../data/fileSync');
-const { v4: uuidv4 } = require('uuid');
-const { title } = require('process');
-const upload = require('../middlewares/uploadProduct');
+
+const { v4: uuidv4 } = require("uuid");
+const upload = require("../middlewares/uploadProduct");
+const { Product } = require("../database/models");
 
 const productsController = {
-    home: (req,res) => {
-        const products = JSON.parse(readFile('products.json'));
-        res.render('home',{ products: products , title: 'Lista de productos' });
+    home: async (req, res) => {
+        try {
+            const products = await Product.findAll({ Product });
+            //console.log(products);
+            //return res.send(products)
 
+            res.render("home", {
+                products,
+                title: "Lista de productos",
+            });
+        } catch (error) {
+            throw new Error("error", error);
+        }
     },
 
-    detail: (req,res,next) => {
-        const products = parseFile(readFile('products.json'));
-        const id = req.params.id;
-        const product = products.find(product => product.id == id);        
-        
-        return res.render('products/products',{ ...product , title: 'Detalle del producto' });
-        
+    detail: async (req, res, next) => {
+        try {
+            const id = req.params.id;
+            const { name, price, image, brand, description } =
+                await Product.findByPk(id);
+
+            return res.render("products/products", {
+                name,
+                price,
+                image,
+                brand,
+                description,
+                title: "Detalle del producto",
+            });
+        } catch (error) {
+            throw new Error("error", error);
+        }
     },
 
-    add: (req,res) => {
-        res.render('admin/productAdd', { title: 'Agregar producto' });
+    add: (req, res) => {
+        res.render("admin/productAdd", { title: "Agregar producto" });
     },
+
+    store: async (req, res) => {
+        try {
+            const { name, price, marca, description } = req.body;
+            const imageProduct = req.file;
+            console.log("datos ingresados", req.body);
+
+            await Product.create({
+                name,
+                price,
+                marca,
+                description,
+                image: imageProduct ? req.file.filename : "default-image.png",
+            });
+            res.redirect("/admin");
+        } catch (error) {
+            throw new Error("error en el store", error);
+        }
+    },
+
+    edit: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const product = await Product.findByPk(id);
+            const {name, brand, description, price, image} = product;
+            console.log(product);
+
+            res.render("admin/productEdit", {
+                id,
+                name,
+                brand,
+                description,
+                price,
+                image,
+                title: "Editar producto",
+            });
+
+        } catch (error) {
+            throw new Error("error de edit", error);
+        }
+    },
+
+    update: async (req, res) => {
+        try {
+            const { name, price, brand } = req.body;
+            await Product.update({
+                name,
+                price,
+                brand,
+            });
+        } catch (error) {}
+
+        res.redirect("/admin");
+    },
+
+    remove: async (req, res) => {
+        try {
+            const { id } = req.params;
+            await Product.destroy({
+                where: {
+                    id:id
+                }
+            })
     
-    
-    store: (req,res) => {
-        const products = readFile('products.json');
-        const {name, price, marca} = req.body;
-        const imageProduct = req.file;
-        
-        const newProduct = {
-
-            id : uuidv4(),
-            name: name,
-            price: +price,
-            marca: marca,
-            image : imageProduct ? req.file.filename : 'default-image.png'
-        };
-        
-        products.push(newProduct);
-        
-        writeFile('products.json',products);
-        res.redirect('/admin');
+            return res.redirect("/admin");
+            
+        } catch (error) {
+            
+        }
     },
-    
-    edit: (req,res) => {
-        const {id} = req.params;
-        const products = JSON.parse(readFile('products.json'));
-        const product = products.find(product => product.id == id);
-        console.log(product);
-        
-        
-        res.render('admin/productEdit',{...product, title: 'Editar producto'});
-        
-    },
-
-    update: (req,res) => {
-
-        
-        const products = readFile('products.json');
-        const {name,price,marca} = req.body;
-        
-        const productModify = products.map(product => {
-            if(product.id === req.params.id){
-                product.name = name;
-                product.price = +price;
-                product.marca = marca;
-            }
-            return product;
-        })
-        
-        writeFile('products.json',productModify);
-        res.redirect('/admin');
-    },
-
-    remove: (req,res) => {
-        const products = readFile('products.json');
-        const {id} = req.params;
-        
-        const productModify = products.filter(product => product.id !== id)
-
-        writeFile('products.json',productModify);
-        console.log(productModify);
-        
-        
-        return res.redirect('/admin');
-    }
-
-
-}
+};
 module.exports = productsController;
-
-
-
-
-

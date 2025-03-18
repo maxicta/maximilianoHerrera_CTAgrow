@@ -1,4 +1,4 @@
-const { readFile } = require("../data/fileSync");
+const {Product} = require('../database/models');
 
 
 const indexControllers = {
@@ -7,11 +7,16 @@ const indexControllers = {
         return res.render('index')
     },
     
-    admin: (req, res) => {
-        const products = JSON.parse(readFile('products.json'))
-        res.render('admin', {products, title: 'Administrador de productos'})
-        console.log(products);
-        
+    admin: async (req, res) => {
+        try {
+            const products = await Product.findAll({Product});
+            res.render('admin', {products, title: 'Administrador de productos'})
+            console.log(products);
+            
+        } catch (error) {
+            throw new Error("error en el admin", error);
+            
+        }
     }
 }
 
