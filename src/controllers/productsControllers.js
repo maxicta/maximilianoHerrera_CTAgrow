@@ -61,7 +61,6 @@ const productsController = {
         try {
             const { name, price, brand, categorie, description } = req.body;
             const imageProduct = req.file;
-            console.log("datos ingresados", req.body);
 
             await Product.create({
                 name,
@@ -81,16 +80,24 @@ const productsController = {
         try {
             const { id } = req.params;
             const product = await Product.findByPk(id);
-            const {name, brand, description, price, image} = product;
-            console.log(product);
+            const brands = await Brand.findAll({
+                order : ['name']
+            });
+            const categories = await Categorie.findAll({
+                order: ['name']
+            })
+            const {name, brandId, categorieId, description, price, image} = product;
 
             res.render("admin/productEdit", {
                 id,
                 name,
-                brand,
+                brandId,
                 description,
+                categorieId,
                 price,
                 image,
+                categories,
+                brands,
                 title: "Editar producto",
             });
 
