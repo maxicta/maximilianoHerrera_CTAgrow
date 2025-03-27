@@ -108,13 +108,18 @@ const productsController = {
 
     update: async (req, res) => {
         try {
-            const { name, price, brand } = req.body;
+            const { name, price, brandId, categorieId } = req.body;
             await Product.update({
                 name,
                 price,
-                brand,
+                brandId,
+                categorieId
+            },{
+                where : {
+                    id : req.params.id
+                }
             });
-        } catch (error) {}
+        } catch (error) {console.log(error)}
 
         res.redirect("/admin");
     },

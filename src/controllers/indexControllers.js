@@ -20,7 +20,6 @@ const indexControllers = {
         try {
             const products = await Product.findAll({Product});
             res.render('admin', {products, title: 'Administrador de productos'})
-            console.log(products);
             
         } catch (error) {
             throw new Error("error en el admin", error);
