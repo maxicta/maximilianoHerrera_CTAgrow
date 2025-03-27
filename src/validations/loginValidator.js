@@ -36,11 +36,6 @@ module.exports = [
         .notEmpty()
         .withMessage("El campo no puede estar vacio")
         .bail()
-        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,20}$/)
-        .withMessage(
-            "No cumple con los requisitos, debe contener una mayuscula, minuscula, un valor numerico y un caracter especial. La longitud debe ser entre 8 y 20 caracteres"
-        )
-        .bail()
         .custom(async (value, { req }) => {
             const user = await User.findOne({ where: { email: req.body.email }})
             //console.log('pass desde custom', user.password);
