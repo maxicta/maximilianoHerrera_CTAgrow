@@ -17,8 +17,6 @@ const usersController = {
             //console.log("email desde processLogin", req.body);
 
             if (!errors.isEmpty()) {
-                console.log(errors.mapped());
-
                 return res.render("./users/login", {
                     title: "inicio de sesion",
                     errors: errors.mapped(),
@@ -26,35 +24,21 @@ const usersController = {
                 });
             }
             const user = await User.findOne({ where: { email } });
-            console.log(user);
             
-            const { name,surname, id, image } = user;
-            //console.log(user);
-
-            if (!user) {
-                console.log("Usuario no encontrado desde processLogin");
-
-                return res.render("./users/login", {
-                    title: "Iniciar sesion",
-                    error: "Usuario no encontrado",
-                });
-            }
+            const { name, id, image } = user;
 
             // Guarda los datos en la sesión
             req.session.user = {
-                email: user.email,
-                name: user.name,
-                id: user.id,
+                email,
+                name,
+                id,
             };
-            console.log("usuario logueado desde processLogin");
-            //console.log(name);
-
+      
             // Espera a que la sesión se guarde
             await new Promise((resolve) => req.session.save(resolve));
 
             // Verifica la sesión después de guardar
             if (req.session.user) {
-                //console.log(req.session.user);
 
                 return res.render("./users/profile", {
                     user,
@@ -84,22 +68,20 @@ const usersController = {
 
     storeUser: (req, res, next) => {
         try {
-            //const id = uuid.v4();
             const { name, email, surname, password } = req.body;
             const errores = validationResult(req);
-            //console.log(errores);
 
-            if (errores.array().length > 0) {
+            if (!errores.isEmpty()) {
+                
                 res.render("users/register", {
                     title: "registre sus datos",
-                    errores: errores.mapped(),
+                    errores: errores,
                     name,
                     surname,
                     email,
                     password,
                 });
             } else {
-                console.log("proces true desde store");
                 bcrypt.hash(password, 10, async (err, hash) => {
                     if (err) {
                         throw new Error("Error en el hash");

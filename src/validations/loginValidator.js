@@ -1,5 +1,5 @@
 const { body } = require("express-validator");
-const bcrypt = require("bcrypt");
+const {compareSync} = require("bcrypt");
 const { User } = require("../database/models");
 
 async function comparePass(pass, hash) {
@@ -31,5 +31,4 @@ module.exports = [
                 })
                 .catch(() => Promise.reject("Credenciales inválidas"));
         })
-        .bail(),
 ];
