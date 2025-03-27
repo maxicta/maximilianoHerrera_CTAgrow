@@ -16,7 +16,7 @@ const usersController = {
             const email = req.body.email;
             //console.log("email desde processLogin", req.body);
 
-            if (errors.array().length > 0) {
+            if (!errors.isEmpty()) {
                 console.log(errors.mapped());
 
                 return res.render("./users/login", {
