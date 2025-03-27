@@ -17,11 +17,18 @@
                 <input type="text" value="<%= name %>" name="name" id="nombre" placeholder="Nombre del producto">
 
                 <label for="brand">Marca del producto</label>
-                <input type="text" value="<%= brand %>" name="brand" id="apellido" placeholder="Marca del producto">
-
+                <select name="brandId" id="brand">
+                    <% brands.forEach(brand => { %>
+                     <option value="<%= brand.id %>" <%= brandId == brand.id && 'selected' %>><%= brand.name %></option>
+                    <% }) %>
+                </select>
                 <input type="file"  id="imagen" placeholder="Imagen del producto">
 
-                <input type="text" id="categoria" placeholder="Categoria del producto">
+                <select name="categorieId" id="categorie">
+                    <% categories.forEach(categorie => { %>
+                     <option value="<%= categorie.id %>" <%= categorieId == categorie.id && 'selected' %>><%= categorie.name %></option>
+                    <% }) %>
+                </select>
 
                 <label for="price">Precio del producto</label>
                 <input type="text" value="<%= price %>" name="price" id="price" placeholder="Precio del producto">

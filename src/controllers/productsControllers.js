@@ -2,7 +2,7 @@
 
 const { v4: uuidv4 } = require("uuid");
 const upload = require("../middlewares/uploadProduct");
-const { Product } = require("../database/models");
+const { Product, Categorie, Brand } = require("../database/models");
 
 const productsController = {
     home: async (req, res) => {
@@ -40,19 +40,33 @@ const productsController = {
     },
 
     add: (req, res) => {
-        res.render("admin/productAdd", { title: "Agregar producto" });
+
+        let categories = Categorie.findAll({
+			order : ['name']
+		});
+        let brands = Brand.findAll({
+			order : ['name']
+		});        Promise.all([categories,brands])
+        .then(([categories,brands]) => {
+            return res.render('admin/productAdd',{
+                brands,
+                categories,
+                title : "Agregar producto"
+            })
+        })
+        .catch(error => console.log(error));
     },
 
     store: async (req, res) => {
         try {
-            const { name, price, marca, description } = req.body;
+            const { name, price, brand, categorie, description } = req.body;
             const imageProduct = req.file;
-            console.log("datos ingresados", req.body);
 
             await Product.create({
                 name,
                 price,
-                marca,
+                brandId : brand,
+                categorieId : categorie,
                 description,
                 image: imageProduct ? req.file.filename : "default-image.png",
             });
@@ -66,16 +80,24 @@ const productsController = {
         try {
             const { id } = req.params;
             const product = await Product.findByPk(id);
-            const {name, brand, description, price, image} = product;
-            console.log(product);
+            const brands = await Brand.findAll({
+                order : ['name']
+            });
+            const categories = await Categorie.findAll({
+                order: ['name']
+            })
+            const {name, brandId, categorieId, description, price, image} = product;
 
             res.render("admin/productEdit", {
                 id,
                 name,
-                brand,
+                brandId,
                 description,
+                categorieId,
                 price,
                 image,
+                categories,
+                brands,
                 title: "Editar producto",
             });
 
@@ -86,13 +108,18 @@ const productsController = {
 
     update: async (req, res) => {
         try {
-            const { name, price, brand } = req.body;
+            const { name, price, brandId, categorieId } = req.body;
             await Product.update({
                 name,
                 price,
-                brand,
+                brandId,
+                categorieId
+            },{
+                where : {
+                    id : req.params.id
+                }
             });
-        } catch (error) {}
+        } catch (error) {console.log(error)}
 
         res.redirect("/admin");
     },

@@ -1,29 +1,25 @@
 const {body} = require('express-validator');
-const {readFile, parseFile} = require('../data/fileSync.js');
-const path = require("path");
-const {log} = require('console');
-const directory = path.join(__dirname, "../data/users.json");
-const users = parseFile(readFile(directory));
+const { User } = require("../database/models");
+const { where } = require('sequelize');
 
 module.exports = [
     
-    body('name').notEmpty().withMessage('El campo no puede estar vacio').bail().trim()
-    .isLength({min: 5}).withMessage('El campo debe tener al menos 5 caracteres').bail(),
+    body('name').notEmpty().withMessage('El nombre es obligatorio').bail().trim()
+    .isLength({min: 4}).withMessage('El campo nombre debe tener al menos 4 caracteres'),
     
-    body('password').notEmpty().withMessage('El campo no puede estar vacio').bail()
-    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,20}$/).withMessage("No cumple con los requisitos, debe contener una mayuscula, minuscula, un valor numerico y un caracter especial. La longitud debe ser entre 8 y 20 caracteres").bail(),
+    body('password').notEmpty().withMessage('La contraseña es obligatoria').bail()
+    .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,20}$/).withMessage("La contraseña cumple con los requisitos, debe contener una mayuscula, minuscula, un valor numerico y un caracter especial. La longitud debe ser entre 8 y 20 caracteres"),
     
-    body('email').notEmpty().withMessage('El campo no puede estar vacio').bail().trim()
-    .isEmail().withMessage('El campo debe ser un email').bail()
-    .custom(value => {
-        console.log("value:",value);
-        const user = users.find(user => user.email == value);
-        //console.log('paso por register validator','user',user,'value',value)
-        
-        if (user) {
-            console.log('El email ya está registrado');
-            throw new Error('El email ya está registrado');
-        }
-        return true;
-    }).bail(),
+    body('email').notEmpty().withMessage('El email es obligatorio').bail()
+    .isEmail().withMessage('El email debe ser válido').bail()
+    .custom( (value) => {
+        return User.findOne({
+            where: {
+                email: value,
+            },
+        })
+            .then((user) => {
+                if (user) return Promise.reject();
+            })
+    }).withMessage("El email ya se encuentra registrado")
 ]
