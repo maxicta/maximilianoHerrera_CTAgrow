@@ -3,6 +3,7 @@
 const { v4: uuidv4 } = require("uuid");
 const upload = require("../middlewares/uploadProduct");
 const { Product, Categorie, Brand } = require("../database/models");
+const { where } = require("sequelize");
 
 const productsController = {
     home: async (req, res) => {
@@ -10,9 +11,22 @@ const productsController = {
             const products = await Product.findAll({ Product });
             //console.log(products);
             //return res.send(products)
+            const ilumination = await Product.findAll({
+                where : {
+                    categorieId : 1
+                }
+            })
+
+            const nutrient = await Product.findAll({
+                where: {
+                    categorieId : 3
+                }
+            })
+            
 
             res.render("home", {
                 products,
+                
                 title: "Lista de productos",
             });
         } catch (error) {
@@ -23,8 +37,7 @@ const productsController = {
     detail: async (req, res, next) => {
         try {
             const id = req.params.id;
-            const { name, price, image, brand, description } =
-                await Product.findByPk(id);
+            const { name, price, image, brand, description } = await Product.findByPk(id);
 
             return res.render("products/products", {
                 name,

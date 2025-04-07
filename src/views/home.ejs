@@ -6,10 +6,14 @@
     <main>
         
         <div class="Home-main">
-            <div class="banner">
-                <img id="banner-main" src="images/banner_verde.jpg" alt="banner de presentacion">
+            <div class="banner" style="width: 100%;">
+                <picture>
+                    <source media="(min-width: 768px)" srcset="images/banner_verde.jpg">
+                    <source media="(max-width: 320px)" srcset="images/banner_mobile.jpg">
+                    <img id="banner-main" src="images/banner_mobile.jpg" alt="banner de presentación">
+                </picture>
             </div>
-            <h2>Productos destacados</h2>
+            <h2>Productos</h2>
             <div class="article-section">
 
                 <section>

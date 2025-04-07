@@ -6,7 +6,20 @@ const indexControllers = {
     index : async (req,res) => {
         try {
             const products = await Product.findAll();
-            return res.render('home',{
+            const ilumination = await Product.findAll({
+                where : {
+                    categorieId : 1
+                }
+            })
+
+            const nutrient = await Product.findAll({
+                where: {
+                    categorieId : 3
+                }
+            })
+            return res.render('index',{
+                ilumination,
+                nutrient,
                 products,
                 title : "Home"
             })
