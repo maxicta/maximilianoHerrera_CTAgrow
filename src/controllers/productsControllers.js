@@ -22,10 +22,13 @@ const productsController = {
                     categorieId : 3
                 }
             })
+            const user = await req.session.user
+            //console.log(user);
             
 
             res.render("home", {
                 products,
+                user,
                 
                 title: "Lista de productos",
             });

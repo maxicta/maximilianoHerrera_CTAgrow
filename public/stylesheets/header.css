@@ -5,6 +5,10 @@ header {
 
 .top-bar {
     background-color: var(--verde);
+    p {
+      width: 100%;
+      padding: 0.5rem 0;
+    }
 
 }
 
@@ -21,6 +25,8 @@ header {
     justify-content: space-around;
     align-items: center;
 }
+
+
 
 .log-user-icon {
     display: flex;
@@ -41,6 +47,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -51,6 +58,7 @@ header {
 }
 
 .navbar {
+    display: none;
     width: 100%;
 }
 
@@ -93,7 +101,91 @@ input {
     border-radius: 0.3rem;
 }
 
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--verde);
+    font-weight: 500;
+  }
+  
+  /* Botón hamburguesa */
+  .burger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+  }
+
+  .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 134px;
+        right: 51px;
+        background-color: var(--verde);
+        padding: 3px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        border-radius: 5px;
+      }
+    
+      .nav-links.active {
+        display: flex;
+        width: 75%;
+      }
+
+      .nav-links.active ul {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        border-radius: 5px;
+        
+        background-color: var(--negro);
+        padding: 0%;
+        text-align: center;
+      }
+    
+      .burger {
+        display: flex;
+      }
+
 @media (min-width: 768px) {
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+      }
+      
+      .nav-links li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+      }
+      
+      /* Botón hamburguesa */
+      .burger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 5px;
+      }
+      
+      .burger div {
+        width: 25px;
+        height: 3px;
+        background-color: #333;
+      }
 
     .menu-nav {
         display: flex;
@@ -102,6 +194,43 @@ input {
         width: 100%;
         gap: 1rem;
     }
+
+    .navbar {
+        display: flex;
+        width: 100%;
+        
+        
+        
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+        margin-bottom: 0;
+        width: 100%;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #f7f7f7;
+        padding: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+    
+      .nav-links.active {
+        display: flex;
+      }
+    
+      .burger {
+        display: none;
+      }
 
     .nav-header {
         display: flex;

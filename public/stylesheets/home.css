@@ -25,6 +25,11 @@
     width: 80%;
 }
 
+.home-prod-img {
+    height: 150px;
+    width: 150px;
+}
+
 .article-section section {
     display: flex;
     flex-direction: column;
@@ -87,6 +92,11 @@ i {
 
 button {
     margin: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid var(--verde);
+    background-color: var(--negro);
+    color: var(--verde);
 }
 
 .info-main {

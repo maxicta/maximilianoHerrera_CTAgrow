@@ -33,8 +33,32 @@
                         <li><a href="/users/login">Iniciar Sesión</a></li>
                         <li><a href="/users/register">Registrarse</a></li>
                     <% } %>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Horarios</a></li>
                 </ul>
             </nav>
+            <div class="burger" id="burger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <ul>
+                    <% if (typeof user !== 'undefined' && user) { %>
+                        <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
+                        <li>Bienvenido: <%= user.name %></li>
+                        <li><a href="/users/logout">Cerrar Sesión</a></li>
+                        <li><a href="/admin">Admin</a></li>
+                    <% } else { %>
+                        <li><a href="/users/login">Iniciar Sesión</a></li>
+                        <li><a href="/users/register">Registrarse</a></li>
+                    <% } %>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contacto</a></li>
+                    <li><a href="">Horarios</a></li>
+                </ul>
+            </div>
             <!-- 
             <ul class="nav-header">
                 <a href="">
@@ -58,3 +82,4 @@
 
 </header>
 <script src="/javascripts/searchHeader.js"></script>
+<script src="/javascripts/burgerBottom.js"></script>

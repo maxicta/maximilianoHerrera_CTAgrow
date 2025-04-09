@@ -42,7 +42,7 @@
                 <h3>Iluminacion</h3>
                 <% ilumination.forEach(function(element) { %>
                     <article>
-                        <img src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>" alt="imagen del producto <%= element.name %>">
+                        <img class="home-prod-img" src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>" alt="imagen del producto <%= element.name %>">
                         <h3><%= element.name %></h3>
                         <p>$<%= element.price %></p>
                         
