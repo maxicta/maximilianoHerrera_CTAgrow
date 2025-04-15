@@ -4,13 +4,17 @@
     align-items: center;
 }
 
-.form-add-product {
-    width: 80%;
+.small text
 
+.form-add-product {
+    width: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+
+
 
 .btn {
     align-self: center;
@@ -22,6 +26,26 @@
     transition: .2s ease;
     width: 80%;
     height: 2.5rem;
+    
+}
+
+.error-msg {
+    text-align: center;
+    list-style: none;
+    padding: 15px 0px;
+    width: 90%;
+    gap: 5px;
+    
+}
+
+.error-msg hr {
+    border-color: greenyellow;
+    box-shadow: 1px 1px 10px greenyellow;
+    margin: 10px 0px;
+}
+
+.error-msg > hr:last-of-type{
+    border-color: transparent;
 }
 
 button:hover {

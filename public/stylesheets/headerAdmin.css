@@ -12,7 +12,16 @@
     
     
 } */
-
+.div-img-product-edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.img-product-edit {
+    display: flex;
+    
+    width: 90%;
+}
 
 .admin-products {
     background-color: var(--gris);

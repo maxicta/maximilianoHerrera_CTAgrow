@@ -9,6 +9,21 @@
 @import './media/register.css';
 @import './headerAdmin.css';
 
+
+.inputError {
+    margin: 1vh;
+    width: 90%;
+    border-radius: 0.3rem;
+    border-color: red;
+    box-shadow: 1px 1px 10px red;
+}
+
+input {
+    margin: 1vh;
+    width: 90%;
+    border-radius: 0.3rem;
+}
+
 :root {
     --verde: #ADFF2F;
     --gris: #d4d3d3;

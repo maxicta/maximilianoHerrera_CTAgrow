@@ -3,7 +3,7 @@ const uuid = require("uuid");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { where } = require("sequelize");
-const { name } = require("ejs");
+//const { name } = require("ejs");
 
 const usersController = {
     login: (req, res) => {
@@ -98,7 +98,7 @@ const usersController = {
             }
         } catch (error) {
             console.error("Error al almacenar el usuario:", error);
-            res.status(500).send("Error al almacenar el usuario");
+            //res.status(500).send("Error al almacenar el usuario");
         }
     },
 

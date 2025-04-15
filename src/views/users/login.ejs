@@ -8,12 +8,13 @@
         <section class="form-login">
             <h3>Iniciar Sesión</h3>
             <form class="form-login" action="/users/login" method="post">
-                <input type="email" name="email" id="email" placeholder="Email">
-                <input type="password" name="password" id="password" placeholder="Contraseña">
-                <p class="small text-danger"><%= locals.errors && errors.password.msg %></p>
+                <input type="email" name="email" id="email" placeholder="Email" required value="<%= locals.email ? email : ""%>">
+                <input type="password" name="password" id="password" placeholder="Contraseña" required value="<%= locals.password ? password : ""%>">
+                <p class="error-msg"><%= locals.errors && errors.password.msg %></p>
                 <button id="button-login">INICIAR SESIÓN</button>
                 <label for="remember">Recordad sesion?</label>
                 <input type="checkbox" name="remember" id="remember">
+            </form>
         </section>
     </main>
 

@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 15px 0;
 }
 
 .Home-main {
@@ -91,13 +92,23 @@ i {
 }
 
 button {
-    margin: 10px;
+    margin: 0px 0px;
     width: 100%;
     border-radius: 5px;
     border: 2px solid var(--verde);
     background-color: var(--negro);
     color: var(--verde);
+    padding: 0;
 }
+
+.buttons-sbmit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2rem;
+    
+}
+
 
 .info-main {
     display: flex;

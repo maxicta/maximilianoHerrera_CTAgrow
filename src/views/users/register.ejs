@@ -9,26 +9,28 @@
             <h3>Crear Cuenta</h3>
             
             <form class="form-login" action="/users/register" method="post">
-                <input type="text" name="name" id="nombre" placeholder="Nombre">
-                <input type="text"  name="surname" id="apellido" placeholder="Apellido">
-                <input type="email" name="email" id="email" placeholder="Email">
-                <input type="password" name="password" id="password" placeholder="Contraseña">
-                <input type="password" name="password2" id="password2" placeholder="Repetir Contraseña">
+                <input type="text" name="name" id="nombre" placeholder="Nombre" required value="<%= locals.name ? name : ""%>">
+                <input type="text"  name="surname" id="apellido" placeholder="Apellido" value="<%= locals.surname ? surname : ""%>">
+                <input type="email" name="email" id="email" placeholder="Email" required value="<%= locals.email ? email : ""%>">
+                <input type="password" name="password" id="password" placeholder="Contraseña" required value="<%= locals.password ? password : ""%>">
+                <input type="password" name="password2" id="password2" placeholder="Repetir Contraseña" value="<%= locals.password2 ? password2 : ""%>">
                 <button id="button-registro">REGISTRAR</button>
             </form>
             <% if (locals.errores) { %>
-                <ul>
-                   <% errores.errors.forEach(err => { %>
-                       <li><%= err.msg %></li>
-                   <% }) %>
+                <ul class="error-msg">
+                    <% errores.errors.forEach(err => { %>
+                        <li class="error-li"><%= err.msg %></li>
+                        <hr >
+                    <% }) %>
                 </ul>
-               <% } %>
+                <% } %>
         </section>
-       
+        
     </main>
 
 
     <%- include('../partials/footer') %>
 
 </body>
+<script src="/javascript/errorsInput"></script>
 </html>
