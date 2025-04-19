@@ -95,11 +95,7 @@ header {
     border-radius: 50px;
 }
 
-input {
-    margin: 1vh;
-    width: 90%;
-    border-radius: 0.3rem;
-}
+
 
 .nav-links {
     list-style: none;

@@ -7,5 +7,4 @@ const {admin, index} = require('../controllers/indexControllers')
 router
     .get('/', index)
     .get('/admin', admin);
-
 module.exports = router;

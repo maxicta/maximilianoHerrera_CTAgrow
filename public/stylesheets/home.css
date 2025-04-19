@@ -18,7 +18,7 @@
 
 }
 
-.article-section {
+/* .article-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,13 +37,13 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-}
+} */
 
 main h2 {
     margin: 2vw;
 }
 
-.article-section article {
+/* .article-section article {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -53,9 +53,9 @@ main h2 {
     border-radius: 1%;
     height: 25rem;
     
-}
+} */
 
-.article-section a {
+/* .article-section a {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -71,7 +71,7 @@ main h2 {
     margin-bottom: 2vh;
     border-radius: 1rem;
     object-fit: cover;
-}
+} */
 
 h3 {
     margin: 10px;
@@ -93,12 +93,13 @@ i {
 
 button {
     margin: 0px 0px;
-    width: 100%;
+    width: 90%;
     border-radius: 5px;
     border: 2px solid var(--verde);
     background-color: var(--negro);
     color: var(--verde);
     padding: 0;
+    height: 3rem;
 }
 
 .buttons-sbmit {

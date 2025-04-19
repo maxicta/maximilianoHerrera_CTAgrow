@@ -3,6 +3,7 @@ const uuid = require("uuid");
 const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { where } = require("sequelize");
+const { name } = require("ejs");
 //const { name } = require("ejs");
 
 const usersController = {
@@ -24,22 +25,45 @@ const usersController = {
                 });
             }
             const user = await User.findOne({ where: { email } });
-            
+
+            if (!user) {
+                return res.status(401).render("./users/login", {
+                    title: "inicio de sesion",
+                    errors: {
+                        email: {
+                            msg: "Usuario no encontrado",
+                        },
+                    },
+                    email,
+                });
+            }
+
+            // Solo si hay user, entonces hacé destructuring
             const { name, id, image } = user;
 
-            // Guarda los datos en la sesión
-            req.session.user = {
-                email,
-                name,
-                id,
-            };
-      
-            // Espera a que la sesión se guarde
-            await new Promise((resolve) => req.session.save(resolve));
+            req.session.user = { email, name, id };
+
+
+            req.session.save((err) => {
+                if (err) {
+                    return next(err);
+                }
+
+                // Verificamos que se guardó y luego renderizamos
+                return res.render("./users/profile", {
+                    id,
+                    user,
+                    name,
+                    image,
+                    isLoggedIn: true,
+                    title: "Perfil",
+                });
+            });
+            console.log("SESSION DESPUÉS DE LOGIN:", req.session);
+
 
             // Verifica la sesión después de guardar
             if (req.session.user) {
-
                 return res.render("./users/profile", {
                     user,
                     image,
@@ -72,7 +96,6 @@ const usersController = {
             const errores = validationResult(req);
 
             if (!errores.isEmpty()) {
-                
                 res.render("users/register", {
                     title: "registre sus datos",
                     errores: errores,
@@ -91,7 +114,7 @@ const usersController = {
                         surname,
                         email,
                         password: hash,
-                        image: 'imageDefault.png'
+                        image: "imageDefault.png",
                     });
                     res.render("users/login", { title: "Iniciar sesion" });
                 });
@@ -153,18 +176,16 @@ const usersController = {
         try {
             const id = req.params.id;
             const user = await User.findByPk(id);
-    
+
             const { name, surname, email } = req.body;
-    
+
             await user.update({
                 name,
                 surname,
-                email
-            })
-            ;
-    
+                email,
+            });
+
             res.render("./users/profile", { user, title: "Perfil" });
-            
         } catch (error) {
             console.error("Error:", error);
             throw new Error(error.message);
@@ -176,17 +197,15 @@ const usersController = {
             const id = req.params.id;
             await User.destroy({
                 where: {
-                    id:id
-                }
-            })
-            console.log("desde deleteProfile" , id);
-    
-            
+                    id: id,
+                },
+            });
+            console.log("desde deleteProfile", id);
+
             res.redirect("/users/register");
-            
         } catch (error) {
             console.error("Error:", error);
-            throw new Error(error.message);            
+            throw new Error(error.message);
         }
     },
 };

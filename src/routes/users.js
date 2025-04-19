@@ -12,6 +12,7 @@ router.get('/login', loginVerify, login);
 router.post('/login', loginValidator, processLogin);
 router.get('/logout', logout);
 
+
 router.get('/register', register);
 router.post('/register', registerValidator, storeUser);
 

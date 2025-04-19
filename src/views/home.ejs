@@ -1,64 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head') %>
-<body>
-    <%- include('./partials/header') %>
-    <main>
-        
-        <div class="Home-main">
-            <div class="banner" style="width: 100%;">
-                <picture>
-                    <source media="(min-width: 768px)" srcset="images/banner_verde.jpg">
-                    <source media="(max-width: 320px)" srcset="images/banner_mobile.jpg">
-                    <img id="banner-main" src="images/banner_mobile.jpg" alt="banner de presentación">
-                </picture>
-            </div>
-            <h2>Productos</h2>
-            <div class="article-section">
-
-                <section>
-                    <% products.forEach(function(element) { %>
-                        <article>
+    <%- include('./partials/head') %>
+    <body>
+        <%- include('./partials/header') %>
+        <main>
+            <div class="Home-main">
+                <div class="banner" style="width: 100%">
+                    <picture>
+                        <source
+                            media="(min-width: 768px)"
+                            srcset="images/banner_verde.jpg"
+                        />
+                        <source
+                            media="(max-width: 320px)"
+                            srcset="images/banner_mobile.jpg"
+                        />
+                        <img
+                            id="banner-main"
+                            src="images/banner_mobile.jpg"
+                            alt="banner de presentación"
+                        />
+                    </picture>
+                </div>
+                <h2>Productos</h2>
+                <div class="article-section">
+                    <section class="flex flex-col items-center w-xl mx-8">
+                        <% products.forEach(function(element) { %>
+                        <article
+                            class="flex flex-col items-center w-xl p-4 my-2 rounded-lg bg-white gap-4"
+                        >
                             <h3><%= element.name %></h3>
-                            <img src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>" alt="imagen del producto <%= element.name %>">
+                            <img
+                                class="w-[80%]"
+                                src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>"
+                                alt="imagen del producto <%= element.name %>"
+                            />
                             <p>$<%= element.price %></p>
-                            <a id="addProductCar"><button>AGREGAR AL CARRO</button></a>
-                            <a href="/product/detail/<%=element.id%>"><button>VER MAS</button></a>
+                            <form action="/shopcar/add" method="post">
+                                <a
+                                    href="/shopcar/add"
+                                    class="self-center w-[90%]"
+                                    id="addProductCar"
+                                    ><button
+                                        class="w-[100%] bg-black text-lime-300"
+                                    >
+                                        AGREGAR AL CARRO
+                                    </button></a
+                                >
+                            </form>
+                            <a
+                                class="self-center w-[90%]"
+                                href="/product/detail/<%=element.id%>"
+                                ><button
+                                    class="w-[100%] bg-black text-lime-300"
+                                >
+                                    VER MAS
+                                </button></a
+                            >
                         </article>
                         <% }); %>
+                    </section>
+                </div>
 
-                    
+                <section class="info-main">
+                    <div>
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <div>
+                            <p>Asesoramiento via Whatsapp</p>
+                            <p>
+                                Te brindamos la ayuda necesaria para saber que
+                                tipo producto se adecua mas a tu situacion.
+                            </p>
+                            <p>De lunes a sabados de 10 a 20hs</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-handshake"></i>
+                        <div>
+                            <p>Tranquilidad</p>
+                            <p>
+                                Tenemos años en la industria ayudando a un
+                                sinfin de clientes.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <div>
+                            <p>Envios a todo el pais</p>
+                            <p>
+                                Envio gratis a todo el pais. Con tu compra a
+                                partir de $150.000
+                            </p>
+                        </div>
+                    </div>
                 </section>
             </div>
-
-            <section class="info-main">
-            <div>
-                <i class="fa-solid fa-circle-info"></i>
-
-                <div>
-                    <p>Asesoramiento via Whatsapp</p>
-                    <p>Te brindamos la ayuda necesaria para saber que tipo producto se adecua mas a tu situacion.</p>
-                    <p>De lunes a sabados de 10 a 20hs</p>
-                </div>
-            </div>
-            <div>
-                    <i class="fa-solid fa-handshake"></i>
-                    <div>
-                        <p>Tranquilidad</p>
-                        <p>Tenemos años en la industria ayudando a un sinfin de clientes.</p>
-                    </div>
-            </div>
-            <div>
-                    <i class="fa-solid fa-truck-fast"></i>
-                    <div>
-                        <p>Envios a todo el pais</p>
-                        <p>Envio gratis a todo el pais. Con tu compra a partir de $150.000</p>
-                    </div>
-            </div>
-            </section>
-        </div>
-    </main>
-    <%- include('./partials/footer') %>
-</body>
-<script src="/public/javascripts/addButtonCar.js"></script>
+        </main>
+        <%- include('./partials/footer') %>
+    </body>
+    <script src="/public/javascripts/addButtonCar.js"></script>
 </html>

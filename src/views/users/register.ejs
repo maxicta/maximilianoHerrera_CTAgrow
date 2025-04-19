@@ -1,36 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
-<body>
-    <%- include('../partials/header') %>
-    <main>
-        <section class="form-login">
-            <h3>Crear Cuenta</h3>
-            
-            <form class="form-login" action="/users/register" method="post">
-                <input type="text" name="name" id="nombre" placeholder="Nombre" required value="<%= locals.name ? name : ""%>">
-                <input type="text"  name="surname" id="apellido" placeholder="Apellido" value="<%= locals.surname ? surname : ""%>">
-                <input type="email" name="email" id="email" placeholder="Email" required value="<%= locals.email ? email : ""%>">
-                <input type="password" name="password" id="password" placeholder="Contraseña" required value="<%= locals.password ? password : ""%>">
-                <input type="password" name="password2" id="password2" placeholder="Repetir Contraseña" value="<%= locals.password2 ? password2 : ""%>">
-                <button id="button-registro">REGISTRAR</button>
-            </form>
-            <% if (locals.errores) { %>
+    <body>
+        <%- include('../partials/header') %>
+        <main>
+            <section class="form-login">
+                <h3>Crear Cuenta</h3>
+                <form class="form-login" action="/users/register" method="post">
+                    <div class="form-group">
+                        <input class="form-input" type="text" name="name"
+                        id="nombre" placeholder="Nombre" required value="<%=
+                        locals.name ? name : ""%>">
+                        <div class="error-message" id="nombreError">
+                            El nombre debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="text" name="surname"
+                        id="apellido" placeholder="Apellido" value="<%=
+                        locals.surname ? surname : ""%>">
+                        <div class="error-message" id="apellidoError">
+                            El apellido debe tener al menos 2 caracteres
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="email" name="email"
+                        id="email" placeholder="Email" required value="<%=
+                        locals.email ? email : ""%>">
+                        <div class="error-message" id="emailError">
+                            El email debe ser válido
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="password"
+                        name="password" id="password" placeholder="Contraseña"
+                        required value="<%= locals.password ? password : ""%>">
+                        <div class="error-message" id="passwordError">
+                            La contraseña debe tener al menos 6 caracteres
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-input" type="password"
+                        name="password2" id="password2" placeholder="Repetir Contraseña" required value="<%= locals.password2 ?
+                        password2 : ""%>">
+                        <div class="error-message" id="password2Error">
+                            Las contraseñas deben coincidir
+                        </div>
+                    </div>
+
+                    <button id="button-registro">REGISTRAR</button>
+                </form>
+
+                <% if (locals.errores) { %>
                 <ul class="error-msg">
                     <% errores.errors.forEach(err => { %>
-                        <li class="error-li"><%= err.msg %></li>
-                        <hr >
+                    <li class="error-li"><%= err.msg %></li>
+                    <hr />
                     <% }) %>
                 </ul>
                 <% } %>
-        </section>
-        
-    </main>
+            </section>
+        </main>
 
-
-    <%- include('../partials/footer') %>
-
-</body>
-<script src="/javascript/errorsInput"></script>
+        <%- include('../partials/footer') %>
+    </body>
+    <script src="/javascript/errorsInput"></script>
 </html>
