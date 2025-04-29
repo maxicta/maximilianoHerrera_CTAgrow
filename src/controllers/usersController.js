@@ -43,33 +43,16 @@ const usersController = {
 
             req.session.user = { email, name, id };
 
-
             req.session.save((err) => {
                 if (err) {
                     return next(err);
                 }
-
-                // Verificamos que se guardó y luego renderizamos
-                return res.render("./users/profile", {
-                    id,
-                    user,
-                    name,
-                    image,
-                    isLoggedIn: true,
-                    title: "Perfil",
-                });
             });
             console.log("SESSION DESPUÉS DE LOGIN:", req.session);
 
-
             // Verifica la sesión después de guardar
             if (req.session.user) {
-                return res.render("./users/profile", {
-                    user,
-                    image,
-                    isLoggedIn: true,
-                    title: "Perfil",
-                });
+                res.redirect(`/users/profile/${id}`);
             } else {
                 return res.status(401).json({
                     error: "No hay sesión iniciada",
@@ -125,28 +108,31 @@ const usersController = {
         }
     },
 
-    profile: (req, res) => {
-        // Primero verifica si hay sesión
-        if (!req.session.user) {
-            return res.redirect("/users/login");
+    profile: async (req, res) => {
+        try {
+            // Primero verifica si hay sesión
+            if (!req.session.user) {
+                return res.redirect("/users/login");
+            }
+    
+            // Lee el archivo users.json
+            const id = req.params.id;
+            // Busca el usuario
+            const user = await User.findByPk(id);
+            
+            
+    
+            // Renderiza la vista con el usuario y la sesión
+            res.render("users/profile", {
+                user: user,
+                sessionUser: req.session.user,
+                title: "Perfil",
+            });
+            
+        } catch (error) {
+            console.log(error);
+            
         }
-
-        // Lee el archivo users.json
-        const id = req.params.id;
-        // Busca el usuario
-        const user = User.findByPk(id);
-
-        // Si no encuentra el usuario, redirige a login
-        if (!user) {
-            return res.redirect("/users/login");
-        }
-
-        // Renderiza la vista con el usuario y la sesión
-        res.render("users/profile", {
-            user: user,
-            sessionUser: req.session.user,
-            title: "Perfil",
-        });
     },
 
     editProfile: async (req, res) => {

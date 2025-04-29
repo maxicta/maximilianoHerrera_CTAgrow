@@ -34,6 +34,7 @@
                         <td>$<%= item.product.price %></td>
                         <td>
                             <form
+                                id="formAdd"
                                 method="POST"
                                 action="/shopcar/update/<%= item.product.id %>"
                             >
@@ -60,7 +61,7 @@
                 </tbody>
             </table>
 
-            <h3>Total: $<%= total %></h3>
+            <h3>Total: $</h3>
 
             <form method="POST" action="/shopcar/clear?_method=DELETE">
                 <button type="submit">Vaciar carrito</button>
@@ -72,4 +73,5 @@
 
         <%- include('../partials/footer') %>
     </body>
+    <script src="/public/javascripts/home.js"></script>
 </html>

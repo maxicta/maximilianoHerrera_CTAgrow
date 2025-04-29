@@ -3,18 +3,24 @@ const { Shopcar, Ordershop, Product } = require("../database/models");
 shopCarController = {
     getCart: async (req, res) => {
         try {
-            const userId = req.session.user.id;
+            const userId = await req.session.user.id;
+            
+            
     
-            // ahora podés buscar el carrito relacionado a ese userId
             const ordershop = await Ordershop.findOne({ where: { userId } });
+            
+            
     
             const cart = await Shopcar.findAll({
                 where: { ordershopId: ordershop.id },
-                include: ['products'] // o como tengas definida la relación
+                include: ['product']
             });
+            console.log('log de cart', cart);
+            
     
             return res.render('products/shopCar', {
                 title: 'Tu carrito',
+                user: true,
                 cart,
                 isLoggedIn: true
             });
@@ -29,18 +35,20 @@ shopCarController = {
         try {
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
-
+            
+            
             let order = await Ordershop.findOne({
-                where: { users_id: userId },
+                where: { userId },
             });
             if (!order) {
-                order = await Ordershop.create({ users_id: userId, total: 0 });
+                order = await Ordershop.create({ usersId: userId, total: 0 });
             }
+            
 
             let item = await Shopcar.findOne({
                 where: {
-                    OrdersShops_id: order.id,
-                    products_id: productId,
+                    ordershopId: order.id,
+                    productId: productId,
                 },
             });
 
@@ -49,13 +57,15 @@ shopCarController = {
                 await item.save();
             } else {
                 await Shopcar.create({
-                    OrdersShops_id: order.id,
-                    products_id: productId,
-                    cant: quantity,
+                    ordershopId: order.id,
+                    productId: productId,
+                    cant: 1,
                 });
             }
+            console.log(item);
+            
 
-            return res.json({ message: "Producto agregado al carrito" });
+            return res.redirect('/product');
         } catch (error) {
             console.log("Error al agregar producto:", error);
             res.status(500).json({ error: "Error interno del servidor" });
@@ -67,6 +77,8 @@ shopCarController = {
             const userId = req.session.user.id;
             const { productId } = req.params;
             const { quantity } = req.body;
+            console.log('cantidad de productos', quantity);
+            
 
             const order = await Ordershop.findOne({
                 where: { users_id: userId },
@@ -74,8 +86,8 @@ shopCarController = {
 
             const item = await Shopcar.findOne({
                 where: {
-                    OrdersShops_id: order.id,
-                    products_id: productId,
+                    ordershopId: order.id,
+                    productId: productId,
                 },
             });
 
@@ -100,17 +112,17 @@ shopCarController = {
             const { productId } = req.params;
 
             const order = await Ordershop.findOne({
-                where: { users_id: userId },
+                where: { userId: userId },
             });
 
             await Shopcar.destroy({
                 where: {
-                    OrdersShops_id: order.id,
-                    products_id: productId,
+                    ordershopId: order.id,
+                    productId: productId,
                 },
             });
 
-            return res.json({ message: "Producto eliminado del carrito" });
+            return res.redirect('/shopcar');
         } catch (error) {
             console.log("Error al eliminar producto:", error);
             res.status(500).json({ error: "Error interno del servidor" });
@@ -121,14 +133,14 @@ shopCarController = {
         try {
             const userId = req.session.user.id;
             const order = await Ordershop.findOne({
-                where: { users_id: userId },
+                where: { userId: userId },
             });
 
             await Shopcar.destroy({
-                where: { OrdersShops_id: order.id },
+                where: { ordershopId: order.id },
             });
 
-            return res.json({ message: "Carrito vaciado" });
+            return res.redirect('/shopcar');
         } catch (error) {
             console.log("Error al vaciar carrito:", error);
             res.status(500).json({ error: "Error interno del servidor" });

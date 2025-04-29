@@ -13,3 +13,12 @@ Keep Doing: Intentando resolver aunque a veces no pueda o sienta que no puedo o 
 Less Of: Dar por sentado que si lo hice ya esta bien.
 
 Stop Doing: si no me sale algo dejarlo ahi.
+
+
+----------------------------------------------
+
+errores a revisar.
+
+porque cuando quiero estoy logueado si cambio de ruta no me aparece como logueado
+
+

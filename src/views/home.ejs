@@ -36,17 +36,23 @@
                                 alt="imagen del producto <%= element.name %>"
                             />
                             <p>$<%= element.price %></p>
-                            <form action="/shopcar/add" method="post">
-                                <a
-                                    href="/shopcar/add"
-                                    class="self-center w-[90%]"
-                                    id="addProductCar"
-                                    ><button
+                            <form id="formAdd" action="/shopcar/add %>" method="post">
+                                <input
+                                    type="hidden"
+                                    name="productId"
+                                    value="<%= element.id %>"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="quantity"
+                                    value="1"
+                                />
+                                <button type="submit"
                                         class="w-[100%] bg-black text-lime-300"
                                     >
                                         AGREGAR AL CARRO
-                                    </button></a
-                                >
+                                    </button>
+                                
                             </form>
                             <a
                                 class="self-center w-[90%]"
@@ -100,5 +106,7 @@
         </main>
         <%- include('./partials/footer') %>
     </body>
-    <script src="/public/javascripts/addButtonCar.js"></script>
+    <script src="/javascripts/addButtonCar.js"></script>
+    <script src="/javascripts/home.js"></script>
+
 </html>

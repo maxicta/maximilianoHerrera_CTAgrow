@@ -16,7 +16,12 @@
                     <p id="precio-product-detail">$<%=price%></p>
                     <p id="descripcion-product-detail"><%= brand %></p>
                     <p><%= description %></p>
-                    <button>AGREGAR AL CARRO</button>
+                    <form action="/shopcar/add" method="post">
+                        <input type="hidden" name="productId" value="<%= id %>">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit">AGREGAR AL CARRO</button>
+                    </form>
+                    
                     <button>COMPRAR</button>
                 </article>
             </section>

@@ -44,6 +44,7 @@ const productsController = {
             const { name, price, image, brand, description } = await Product.findByPk(id);
 
             return res.render("products/products", {
+                id,
                 name,
                 price,
                 image,
