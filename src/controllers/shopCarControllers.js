@@ -1,49 +1,62 @@
+const { Association } = require("sequelize");
 const { Shopcar, Ordershop, Product } = require("../database/models");
 
 shopCarController = {
     getCart: async (req, res) => {
         try {
             const userId = await req.session.user.id;
-            
-            
-    
-            const ordershop = await Ordershop.findOne({ where: { userId } });
-            
-            
-    
+
+            const ordershop = await Ordershop.findOne({
+                include: [{
+                    association: 'Shopcars', include: [{ association: 'product' }]
+                }],
+                where: { userId, status: 'en proceso' }
+            });
+
+            /*
+            Aca tenes toda la informacion de la orden vigente del usuario, esta query trae
+            todos los items asociados a la orden, y cada item tiene el producto asociado
+            te falta en la vista iterar correctamente el array de items para mostrar los productos
+            y hacer la suma de los precios, es decir el subtotal de cada item
+            y el total de la orden
+            */
+            console.log('log de ordershop', ordershop); 
+
+
             const cart = await Shopcar.findAll({
                 where: { ordershopId: ordershop.id },
                 include: ['product']
             });
+
             console.log('log de cart', cart);
-            
-    
+
+
             return res.render('products/shopCar', {
                 title: 'Tu carrito',
                 user: true,
                 cart,
                 isLoggedIn: true
             });
-    
+
         } catch (error) {
             console.error("Error al obtener el carrito:", error);
             return res.status(500).send("Error interno al obtener el carrito");
         }
     },
-    
+
     addToCart: async (req, res) => {
         try {
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
-            
-            
+
+
             let order = await Ordershop.findOne({
                 where: { userId },
             });
             if (!order) {
                 order = await Ordershop.create({ usersId: userId, total: 0 });
             }
-            
+
 
             let item = await Shopcar.findOne({
                 where: {
@@ -63,7 +76,7 @@ shopCarController = {
                 });
             }
             console.log(item);
-            
+
 
             return res.redirect('/product');
         } catch (error) {
@@ -78,7 +91,7 @@ shopCarController = {
             const { productId } = req.params;
             const { quantity } = req.body;
             console.log('cantidad de productos', quantity);
-            
+
 
             const order = await Ordershop.findOne({
                 where: { users_id: userId },

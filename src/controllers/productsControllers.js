@@ -29,8 +29,7 @@ const productsController = {
 
             res.render("home", {
                 products,
-                user,
-                
+                user,    
                 title: "Lista de productos",
             });
         } catch (error) {
