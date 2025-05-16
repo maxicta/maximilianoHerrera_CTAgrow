@@ -1,34 +1,25 @@
 const { body } = require("express-validator");
-const {compareSync} = require("bcrypt");
+const { compareSync } = require("bcrypt");
 const { User } = require("../database/models");
 
-async function comparePass(pass, hash) {
-    //console.log("hash:", hash);
-    //console.log("pass:", pass);
-    return await bcrypt.compare(pass, hash);
-}
-
 module.exports = [
+    body("email")
+        .notEmpty().withMessage("El email es obligatorio").bail()
+        .isEmail().withMessage("Debe ser un email válido"),
+
     body("password")
-        .custom((value, { req }) => {
-            if (!value || !req.body.email) {
-                return false;
-            }
-            return true;
-        })
-        .withMessage("Todos los campos son obligatorios")
+        .notEmpty().withMessage("La contraseña es obligatoria")
         .bail()
         .custom(async (value, { req }) => {
-            return User.findOne({
-                where: {
-                    email: req.body.email,
-                },
-            })
-                .then((user) => {
-                    if (!user || !compareSync(value, user.password)) {
-                        return Promise.reject();
-                    }
-                })
-                .catch(() => Promise.reject("Credenciales inválidas"));
+            const user = await User.findOne({ where: { email: req.body.email } });
+
+            if (!user || !compareSync(value, user.password)) {
+                throw new Error("Credenciales inválidas");
+            }
+
+            // Guarda el usuario en la request
+            req.userLogged = user;
+
+            return true;
         })
 ];

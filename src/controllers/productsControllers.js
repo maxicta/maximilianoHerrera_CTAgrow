@@ -4,6 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const upload = require("../middlewares/uploadProduct");
 const { Product, Categorie, Brand } = require("../database/models");
 const { where } = require("sequelize");
+const { validationResult } = require("express-validator");
 
 const productsController = {
     home: async (req, res) => {
@@ -39,10 +40,13 @@ const productsController = {
 
     detail: async (req, res, next) => {
         try {
+            const user = await req.session.user
             const id = req.params.id;
             const { name, price, image, brand, description } = await Product.findByPk(id);
 
             return res.render("products/products", {
+                user,
+                id,
                 name,
                 price,
                 image,
@@ -73,11 +77,38 @@ const productsController = {
         .catch(error => console.log(error));
     },
 
-    store: async (req, res) => {
+    store: async (req, res, next) => {
+        //console.log(req.body);
         try {
             const { name, price, brand, categorie, description } = req.body;
             const imageProduct = req.file;
 
+            const brands = await Brand.findAll({
+                order: ['name']
+            });
+
+            const categories = await Categorie.findAll({
+                order: ['name']
+            });
+            
+            const errores = validationResult(req);
+            //console.log(errores);
+            
+            
+            if (!errores.isEmpty()) {
+                return res.render("admin/productAdd", {
+                    title: "Agregar Producto",
+                    errores: errores,
+                    name,
+                    price,
+                    brands,
+                    categories,
+                    description,
+                    image: imageProduct ? req.file.filename : "default-image.jpg"
+                })
+            }
+            
+            
             await Product.create({
                 name,
                 price,
@@ -86,8 +117,11 @@ const productsController = {
                 description,
                 image: imageProduct ? req.file.filename : "default-image.png",
             });
-            res.redirect("/admin");
+            return res.redirect("/admin");
         } catch (error) {
+            console.log(error);
+            
+            //res.redirect("/")
             throw new Error("error en el store", error);
         }
     },
@@ -103,6 +137,7 @@ const productsController = {
                 order: ['name']
             })
             const {name, brandId, categorieId, description, price, image} = product;
+            
 
             res.render("admin/productEdit", {
                 id,
@@ -124,19 +159,54 @@ const productsController = {
 
     update: async (req, res) => {
         try {
-            const { name, price, brandId, categorieId } = req.body;
+            const { name, price, brandId, categorieId, description, } = req.body;
+            const imageProduct = req.file;
+            
+            const brands = await Brand.findAll({
+                order: ['name']
+            });
+
+            const categories = await Categorie.findAll({
+                order: ['name']
+            });
+            
+
+            const errores = validationResult(req);
+            //console.log(errores);
+            
+            
+            if (!errores.isEmpty()) {
+                return res.render("admin/productEdit", {
+                    title: "Agregar Producto",
+                    errores: errores,
+                    id: req.params.id,
+                    name,
+                    price,
+                    brandId,
+                    brands,
+                    categories,
+                    categorieId,
+                    description,
+                    image: imageProduct ? req.file.filename : "default-image.jpg"
+                })
+            }
             await Product.update({
                 name,
                 price,
                 brandId,
-                categorieId
+                categorieId,
+                description,
+                image: imageProduct ? req.file.filename : "default-image.jpg"
+
             },{
                 where : {
                     id : req.params.id
                 }
             });
-        } catch (error) {console.log(error)}
-
+        } catch (error) {
+            console.log(error)
+            
+        }
         res.redirect("/admin");
     },
 

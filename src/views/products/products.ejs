@@ -16,12 +16,15 @@
                     <p id="precio-product-detail">$<%=price%></p>
                     <p id="descripcion-product-detail"><%= brand %></p>
                     <p><%= description %></p>
-                    <button>AGREGAR AL CARRO</button>
+                    
+                    <button onclick="addProduct('<%=id%>','<%=user.id%>')" type="submit">AGREGAR AL CARRO</button>
+                    
                     <button>COMPRAR</button>
                 </article>
             </section>
         </div>
     </main>
     <%- include('../partials/footer') %>
+    <script src="/javascripts/home.js"></script>
 </body>
 </html>

@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
-<body>
-    <%- include('../partials/header') %>
+    <body>
+        <%- include('../partials/header') %>
 
+        <main>
+            <h2>agregar producto</h2>
+            <section class="form-login">
+                <form
+                    class="form-add-product"
+                    action="/product/add"
+                    method="POST"
+                    enctype="multipart/form-data"
+                >
+                    <label for="name">Nombre del producto</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        placeholder="Nombre del producto"
+                        required
+                    />
 
-    <main>
-        <h2>agregar producto</h2>
-        <section class="form-login">
-                        
-            <form class="form-add-product" action="/product/add" method="POST" enctype="multipart/form-data">
-                <label for="name">Nombre del producto</label>
-                <input type="text" name="name" id="name" placeholder="Nombre del producto">
-
-                <label for="brand">Marca del producto</label>
-                <select name="brand" id="brand">
-                    <% brands.forEach(brand => { %>
+                    <label for="brand">Marca del producto</label>
+                    <select name="brand" id="brand">
+                        <% brands.forEach(brand => { %>
                         <option hidden selected>Seleccione...</option>
-                     <option value="<%= brand.id %>"><%= brand.name %></option>
-                    <% }) %>
-                </select>
+                        <option value="<%= brand.id %>">
+                            <%= brand.name %>
+                        </option>
+                        <% }) %>
+                    </select>
 
-                <label for="description">Descripcion del producto</label>
-                <input type="text" name="description" id="desctiption" placeholder="Descripcion del producto">
+                    <label for="description">Descripcion del producto</label>
+                    <input
+                        type="text"
+                        name="description"
+                        id="desctiption"
+                        placeholder="Descripcion del producto"
+                    />
 
-                <label for="categories">Categoria del producto</label>
-                <select name="categorie" id="categorie">
-                    <% categories.forEach(categorie => { %>
+                    <label for="categories">Categoria del producto</label>
+                    <select name="categorie" id="categorie">
+                        <% categories.forEach(categorie => { %>
                         <option hidden selected>Seleccione...</option>
-                     <option value="<%= categorie.id %>"><%= categorie.name %></option>
+                        <option value="<%= categorie.id %>">
+                            <%= categorie.name %>
+                        </option>
+                        <% }) %>
+                    </select>
+
+                    <label for="price">Precio del producto</label>
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        placeholder="Precio del producto"
+                    />
+
+                    <input
+                        type="file"
+                        name="image-product"
+                        accept=".jpg, .jpeg, .png, .gif"
+                    />
+                    <button type="submit" id="button-confirm-add">AGREGAR PRODUCTO</button>
+                </form>
+                <% if (locals.errores) { %>
+                <ul class="error-msg">
+                    <% errores.errors.forEach(err => { %>
+                    <li class="error-li"><%= err.msg %></li>
+                    <hr />
                     <% }) %>
-                </select>
+                </ul>
+                <% } %>
+            </section>
+        </main>
 
-                <label for="price">Precio del producto</label>
-                <input type="text" name="price" id="price" placeholder="Precio del producto">
-                
-                <input type="file" name="image-product">
-                
-                <button id="button-confirm-add">AGREGAR PRODUCTO</button>
-            </form>
-        </section>
-    </main>
-
-    <%- include('../partials/footer') %>
-
-</body>
+        <%- include('../partials/footer') %>
+    </body>
 </html>

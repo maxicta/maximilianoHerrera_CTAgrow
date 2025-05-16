@@ -10,6 +10,7 @@ const products = parseFile(readFile(directory));
 products.map((product) => {
   product.createdAt = new Date();
   product.updatedAt = new Date();
+  product.description = 'descripcion por default para que no qeude el campo vacio'
 })
 
 module.exports = {

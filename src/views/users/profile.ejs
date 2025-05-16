@@ -12,11 +12,19 @@
         <p>Apellido: <%= user.surname %></p>
         <p>Email: <%= user.email %></p>
     </div>
-    <button><a href="/users/editprofile/<%= user.id %>">Actualizar datos</a></button>
-
-    <form action="/users/remove/<%= user.id %>?_method=DELETE" method="post">
-        <button>Eliminar cuenta</button>
-    </form>
-    </main>
+    <div class="buttons-sbmit">
+        <form action="/users/editprofile/<%= user.id %>" style="width: 90%;">
+            <button style="width: 100%;">
+                <a style="color: greenyellow" href="">Actualizar datos</a>
+            </button>
+        </form>
+        <form action="/users/remove/<%= user.id %>?_method=DELETE" method="post">
+            <button style="width: 90%;">
+                <a style="color: greenyellow" href="">Eliminar cuenta</a>
+            </button>
+        </form>
+    </div>
+    
 </body>
 </html>
+</main>

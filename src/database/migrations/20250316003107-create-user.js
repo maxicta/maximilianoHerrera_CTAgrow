@@ -10,13 +10,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100),
+        allowNull: false
       },
       surname: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100),
+        allowNull: false
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(150),
+        allowNull: false,
+        unique: true
       },
       password: {
         type: Sequelize.STRING
@@ -35,12 +39,15 @@ module.exports = {
       },
       rolId: {
         type: Sequelize.INTEGER,
-        references : {
-          model : {
+        allowNull: false,
+        references: {
+          model: {
             tableName: 'Rols'
           },
-          key : 'id'
-        }
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +59,7 @@ module.exports = {
       }
     });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users');
   }

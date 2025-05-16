@@ -6,38 +6,41 @@
     </div>
     <div class="cinta-header">
         <div class="cinta-header-center">
-            <div  class="log-user-icon">
-                <a href="/product"><img id="logo-header" src="/images/logo.png"></a>
+            <div class="log-user-icon">
+                <a href="/product"
+                    ><img id="logo-header" src="/images/logo.png"
+                /></a>
             </div>
             <div class="search-header">
                 <div id="search-input">
-                    <input type="text" placeholder="Que estas buscando?">
+                    <input class="bg-white" style="width: 100%;" type="text" placeholder="Que estas buscando?" />
                 </div>
                 <div id="search-icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                
+                <% if (typeof user !== 'undefined' && user) { %>
+                <a href="/shopcar"><i class="fa-solid fa-cart-shopping"></i></a>
+                <% } %>
             </div>
-            
         </div>
         <div class="menu-nav">
-            
             <nav class="navbar">
                 <ul>
                     <% if (typeof user !== 'undefined' && user) { %>
-                        <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
-                        <li>Bienvenido: <%= user.name %></li>
-                        <li><a href="/users/logout">Cerrar Sesión</a></li>
-                        <li><a href="/admin">Admin</a></li>
+                    <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
+
+                    <li><a href="/users/logout">Cerrar Sesión</a></li>
+                    <li><a href="/admin">Admin</a></li>
                     <% } else { %>
-                        <li><a href="/users/login">Iniciar Sesión</a></li>
-                        <li><a href="/users/register">Registrarse</a></li>
+                    <li><a href="/users/login">Iniciar Sesión</a></li>
+                    <li><a href="/users/register">Registrarse</a></li>
                     <% } %>
                     <li><a href="">About</a></li>
                     <li><a href="">Contacto</a></li>
                     <li><a href="">Horarios</a></li>
                 </ul>
             </nav>
+
             <div class="burger" id="burger">
                 <div></div>
                 <div></div>
@@ -46,13 +49,13 @@
             <div class="nav-links" id="nav-links">
                 <ul>
                     <% if (typeof user !== 'undefined' && user) { %>
-                        <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
-                        <li>Bienvenido: <%= user.name %></li>
-                        <li><a href="/users/logout">Cerrar Sesión</a></li>
-                        <li><a href="/admin">Admin</a></li>
+                    <li><a href="/users/profile/<%= user.id %>">Perfil</a></li>
+
+                    <li><a href="/users/logout">Cerrar Sesión</a></li>
+                    <li><a href="/admin">Admin</a></li>
                     <% } else { %>
-                        <li><a href="/users/login">Iniciar Sesión</a></li>
-                        <li><a href="/users/register">Registrarse</a></li>
+                    <li><a href="/users/login">Iniciar Sesión</a></li>
+                    <li><a href="/users/register">Registrarse</a></li>
                     <% } %>
                     <li><a href="">About</a></li>
                     <li><a href="">Contacto</a></li>
@@ -79,7 +82,6 @@
             </ul> -->
         </div>
     </div>
-
 </header>
 <script src="/javascripts/searchHeader.js"></script>
 <script src="/javascripts/burgerBottom.js"></script>

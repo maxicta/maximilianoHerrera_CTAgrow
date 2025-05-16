@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('./partials/head', {title : 'CTA Grow'}) %>
-<body>
-    <%- include('./partials/header') %>
-    <main class="Home-main">
-        <div class="banner">
-            <picture>
-                <source media="(min-width: 768px)" srcset="images/banner_verde.jpg">
-                <source media="(max-width: 320px)" srcset="images/banner_mobile.jpg">
-                <img id="banner-main" src="images/banner_mobile.jpg" alt="banner de presentación">
-            </picture>
-        </div>
-        <!-- <h2>Productos destacados</h2> -->
-        <div class="article-section">
-
-            <section>
-                <!-- <article>
+    <%- include('./partials/head', {title : 'CTA Grow'}) %>
+    <body>
+        <%- include('./partials/header') %>
+        <main class="Home-main">
+            <div class="banner">
+                <picture>
+                    <source
+                        media="(min-width: 768px)"
+                        srcset="images/banner_verde.jpg"
+                    />
+                    <source
+                        media="(max-width: 320px)"
+                        srcset="images/banner_mobile.jpg"
+                    />
+                    <img
+                        id="banner-main"
+                        src="images/banner_mobile.jpg"
+                        alt="banner de presentación"
+                    />
+                </picture>
+            </div>
+            <!-- <h2>Productos destacados</h2> -->
+            <div class="article-section w-full">
+                <h3 class="mt-6 text-2xl ...">Iluminacion</h3>
+                <section class="flex flex-col items-center justify-evenly gap-4">
+                    <!-- <article>
                     <h3>FERTILIZANTE</h3>
                     <img src="images/products/fertilizante.jpeg" alt="producto 1">
                     <p>Fertilizante para plantas de interior</p>
@@ -39,58 +49,108 @@
                     <p>Lampara para cultibo con full esperctrum</p>
                     <button>AGREGAR AL CARRO</button>
                 </article> -->
-                <h3>Iluminacion</h3>
-                <% ilumination.forEach(function(element) { %>
-                    <article>
-                        <img class="home-prod-img" src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>" alt="imagen del producto <%= element.name %>">
+
+                    <% ilumination.forEach(function(element) { %>
+                    <article
+                        class="flex flex-col items-center w-5/6 p-4 rounded-lg bg-white gap-4 flex-col justify-between"
+                        style="height: 500px"
+                    >
                         <h3><%= element.name %></h3>
+                        <img
+                            src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>"
+                            alt="imagen del producto <%= element.name %>"
+                        />
                         <p>$<%= element.price %></p>
-                        
-                        <a href="/product/detail/<%=element.id%>"><button>VER MAS</button></a>
+
+                        <a class="w-full" href="/product/detail/<%=element.id%>"
+                            ><button class="w-full">VER MAS</button></a
+                        >
                     </article>
                     <% }); %>
-            </section>
+                </section>
 
-            <section>
-                <h3>Nutrientes</h3>
-                <% nutrient.forEach(function(element) { %>
-                    <article>
+                <h3 class="mt-6 text-2xl ..." >Nutrientes</h3>
+                <section class="flex flex-col justify-evenly items-center gap-4">
+                    <!-- <article>
+                    <h3>FERTILIZANTE</h3>
+                    <img src="images/products/fertilizante.jpeg" alt="producto 1">
+                    <p>Fertilizante para plantas de interior</p>
+                    <button>AGREGAR AL CARRO</button>
+                </article>
+                <article>
+                    <h3>LUCES LED</h3>
+                    <img src="images/products/Lampara.jpeg" alt="producto 2">
+                    <p>Lampara para cultibo con full esperctrum</p>
+                    <button>AGREGAR AL CARRO</button>
+                </article>
+                <article>
+                    <h3>FERTILIZANTE</h3>
+                    <img src="images/products/maceta.jpeg" alt="producto 1">
+                    <p>Fertilizante para plantas de interior</p>
+                    <button>AGREGAR AL CARRO</button>
+                </article>
+                <article>
+                    <h3>LUCES LED</h3>
+                    <img src="images/products/Lampara.jpeg" alt="producto 2">
+                    <p>Lampara para cultibo con full esperctrum</p>
+                    <button>AGREGAR AL CARRO</button>
+                </article> -->
+
+                    <% nutrient.forEach(function(element) { %>
+                    <article
+                        class="flex flex-col items-center w-5/6 p-4 rounded-lg bg-white gap-4 flex-col justify-between"
+                        style="height: 500px"
+                    >
                         <h3><%= element.name %></h3>
-                        <img src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>" alt="imagen del producto <%= element.name %>">
+                        <img
+                            src="<%= /^(https)/i.test(element.image) ? element.image : '/images/products/'+ element.image%>"
+                            alt="imagen del producto <%= element.name %>"
+                        />
                         <p>$<%= element.price %></p>
-                        <a href=""><button>AGREGAR AL CARRO</button></a>
-                        <a href="/product/detail/<%=element.id%>"><button>VER MAS</button></a>
+
+                        <a class="w-full" href="/product/detail/<%=element.id%>"
+                            ><button class="w-full">VER MAS</button></a
+                        >
                     </article>
                     <% }); %>
-            </section>
-        </div>
-        
-        <section class="info-main">
-        <div>
-            <i class="fa-solid fa-circle-info"></i>
-
-            <div>
-                <p>Asesoramiento via Whatsapp</p>
-                <p>Te brindamos la ayuda necesaria para saber que tipo producto se adecua mas a tu situacion.</p>
-                <p>De lunes a sabados de 10 a 20hs</p>
+                </section>
             </div>
-        </div>
-        <div>
-                <i class="fa-solid fa-handshake"></i>
+
+            <section class="info-main">
                 <div>
-                    <p>Tranquilidad</p>
-                    <p>Tenemos años en la industria ayudando a un sinfin de clientes.</p>
+                    <i class="fa-solid fa-circle-info"></i>
+
+                    <div>
+                        <p>Asesoramiento via Whatsapp</p>
+                        <p>
+                            Te brindamos la ayuda necesaria para saber que tipo
+                            producto se adecua mas a tu situacion.
+                        </p>
+                        <p>De lunes a sabados de 10 a 20hs</p>
+                    </div>
                 </div>
-        </div>
-        <div>
-                <i class="fa-solid fa-truck-fast"></i>
                 <div>
-                    <p>Envios a todo el pais</p>
-                    <p>Envio gratis a todo el pais. Con tu compra a partir de $150.000</p>
+                    <i class="fa-solid fa-handshake"></i>
+                    <div>
+                        <p>Tranquilidad</p>
+                        <p>
+                            Tenemos años en la industria ayudando a un sinfin de
+                            clientes.
+                        </p>
+                    </div>
                 </div>
-        </div>
-        </section>
-    </main>
-    <%- include('./partials/footer') %>
-</body>
+                <div>
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <div>
+                        <p>Envios a todo el pais</p>
+                        <p>
+                            Envio gratis a todo el pais. Con tu compra a partir
+                            de $150.000
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <%- include('./partials/footer') %>
+    </body>
 </html>

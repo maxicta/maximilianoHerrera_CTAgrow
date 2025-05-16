@@ -14,11 +14,16 @@ module.exports = (sequelize, DataTypes) => {
         as: 'ordershop',
         foreignKey: 'userId'
       })
+      Ordershop.hasMany(models.Shopcar, {
+        as: 'Shopcars',
+        foreignKey: 'ordershopId'
+      })
     }
   }
   Ordershop.init({
     total: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    status: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Ordershop',

@@ -1,41 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
-<body>
-    <%- include('../partials/header') %>
-    <main>
-        <section>
-            <div>
-                <div id="list-product-car">                    
-                    <div >
-                        <img src="images/fertilizante.jpeg" alt="imagen-del-producto">
-                        <p id="nombre-product-list">Fertilizante Boost</p>
-                        <h4>$15.000</h4>
-                    </div>
-                    <div >
-                        <img src="images/fertilizante.jpeg" alt="imagen-del-producto">
-                        <p id="nombre-product-list">Fertilizante Boost</p>
-                        <h4>$15.000</h4>
-                    </div>
-                    <div >
-                        <img src="images/fertilizante.jpeg" alt="imagen-del-producto">
-                        <p id="nombre-product-list">Fertilizante Boost</p>
-                        <h4>$15.000</h4>
-                    </div>
-                </div>
-                <div id="section-shop">
-                    <form action="get">
-                        <input type="text" id="codigo-postal" placeholder="Ingrese codigo postal">
-                        <button id="button-calc-envio">CALCULAR</button>
-                    </form>
-                    <button id="button-shop">CONFIRMAR COMPRA</button>
-                    <a href="">VER MAS PRODUCTOS</a>
-                </div>
-            </div>
-        </section>
-    </main>
-    <%- include('../partials/footer') %>
+    <body>
+        <%- include('../partials/header') %>
+        <main class="shopcar">
+            <h1>Mi carrito</h1>
 
-</body>
+            <% if (cart.length === 0) { %>
+            <p>Tu carrito está vacío.</p>
+            <% } else { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                    <tr class="w-full">
+                        <td>
+                            <img
+                                src="/images/products/<%= item.product.image %>"
+                                alt="<%= item.product.name %>"
+                                width="50"
+                                class="imgMobile"
+                            />
+
+                            <%= item.product.name %>
+                        </td>
+                        <td>$<%= item.product.price %></td>
+                        <td>
+                            <form
+                                class="update"
+                                method="POST"
+                                action="/api/shopcar/update/<%= item.product.id %>?_method=put"
+                            >
+                                <input
+                                    type="hidden"
+                                    name="productId"
+                                    value="<%= item.product.id %>"
+                                />
+                                <input
+                                    type="hidden"
+                                    name="userId"
+                                    value="<%= locals.userId %>"
+                                />
+
+                                <input
+                                    type="number"
+                                    name="quantity"
+                                    value="<%= item.quantity %>"
+                                    min="1"
+                                />
+                                <button type="submit">Actualizar</button>
+                            </form>
+                        </td>
+                        <td>
+                            $<%= item.quantity ? item.product.price *
+                            item.quantity : item.product.price %>
+                        </td>
+                        <td>
+                            <button
+                                onclick="deleteProduct('<%=item.product.id%>','<%=locals.userId%>')"
+                                class="button-del-desktop"
+                                type="submit"
+                            >
+                                Eliminar
+                            </button>
+                            <button
+                                onclick="deleteProduct('<%=item.product.id%>','<%=locals.userId%>')"
+                                class="button-del-mobile"
+                                type="submit"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+
+            <h3>Total: <%= total %>$</h3>
+
+            <button
+                onclick="clearCart('<%=ordershop.id%>','<%=locals.userId%>')"
+                type="submit"
+            >
+                Vaciar carrito
+            </button>
+
+            <a href="" class="btn">Finalizar compra</a>
+            <% } %>
+        </main>
+        <div id="toast" class="toast hidden">Producto Actualizado</div>
+
+        <%- include('../partials/footer') %>
+        <script src="/javascripts/home.js"></script>
+        <script src="/javascripts/updateCar.js"></script>
+    </body>
 </html>

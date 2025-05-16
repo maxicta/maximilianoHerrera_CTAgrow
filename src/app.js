@@ -11,6 +11,11 @@ const session = require('express-session')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products-router')
+const shopcarRouter = require('./routes/shopCarRouter')
+
+//apis
+const apiShopcarRouter = require('./routes/api/cart')
+const apiProductsRouter = require('./routes/api/products')
 
 const app = express();
 
@@ -34,6 +39,10 @@ app.use(session({
       httpOnly: true
   }
 }));
+app.use((req, res, next) => {
+  console.log("SESSION ACTUAL:", req.session);
+  next();
+});
 
 /* app.use((req, res, next) => {
   console.log('Estado de la sesión:', {
@@ -48,7 +57,9 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/product', productsRouter);
 app.use('/users', usersRouter);
-
+app.use('/shopcar', shopcarRouter);
+app.use('/api/shopcar', apiShopcarRouter);
+app.use('/api/products', apiProductsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

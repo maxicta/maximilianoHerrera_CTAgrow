@@ -10,46 +10,59 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(100),
+        allowNull: false
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500),
+        allowNull: false
       },
       price: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL,
+        allowNull: false
       },
       image: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(255),
+        defaultValue: 'default-image.jpg'
       },
       stock: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       },
       categorieId: {
         type: Sequelize.INTEGER,
-        references : {
-          model : {
-            tableName : 'Categories'
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Categories'
           },
-          key : 'id'
-        }
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        
       },
       brandId: {
         type: Sequelize.INTEGER,
-        references : {
-          model : {
-            tableName : 'Brands'
+        allowNull: false,
+        references: {
+          model: {
+            tableName: 'Brands'
           },
-          key : 'id'
-        }
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        
       },
       ordershopId: {
         type: Sequelize.INTEGER,
-        references : {
-          model : {
-            tableName : 'Ordershops'
+        references: {
+          model: {
+            tableName: 'Ordershops'
           },
-          key : 'id'
-        }
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        
       },
       createdAt: {
         allowNull: false,
@@ -61,6 +74,7 @@ module.exports = {
       }
     });
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Products');
   }

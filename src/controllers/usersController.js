@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const { where } = require("sequelize");
 const { name } = require("ejs");
+//const { name } = require("ejs");
 
 const usersController = {
     login: (req, res) => {
@@ -24,28 +25,34 @@ const usersController = {
                 });
             }
             const user = await User.findOne({ where: { email } });
-            
+
+            if (!user) {
+                return res.status(401).render("./users/login", {
+                    title: "inicio de sesion",
+                    errors: {
+                        email: {
+                            msg: "Usuario no encontrado",
+                        },
+                    },
+                    email,
+                });
+            }
+
+            // Solo si hay user, entonces hacé destructuring
             const { name, id, image } = user;
 
-            // Guarda los datos en la sesión
-            req.session.user = {
-                email,
-                name,
-                id,
-            };
-      
-            // Espera a que la sesión se guarde
-            await new Promise((resolve) => req.session.save(resolve));
+            req.session.user = { email, name, id };
+
+            req.session.save((err) => {
+                if (err) {
+                    return next(err);
+                }
+            });
+            console.log("SESSION DESPUÉS DE LOGIN:", req.session);
 
             // Verifica la sesión después de guardar
             if (req.session.user) {
-
-                return res.render("./users/profile", {
-                    user,
-                    image,
-                    isLoggedIn: true,
-                    title: "Perfil",
-                });
+                res.redirect(`/users/profile/${id}`);
             } else {
                 return res.status(401).json({
                     error: "No hay sesión iniciada",
@@ -72,7 +79,6 @@ const usersController = {
             const errores = validationResult(req);
 
             if (!errores.isEmpty()) {
-                
                 res.render("users/register", {
                     title: "registre sus datos",
                     errores: errores,
@@ -91,39 +97,42 @@ const usersController = {
                         surname,
                         email,
                         password: hash,
-                        image: 'imageDefault.png'
+                        image: "imageDefault.png",
                     });
                     res.render("users/login", { title: "Iniciar sesion" });
                 });
             }
         } catch (error) {
             console.error("Error al almacenar el usuario:", error);
-            res.status(500).send("Error al almacenar el usuario");
+            //res.status(500).send("Error al almacenar el usuario");
         }
     },
 
-    profile: (req, res) => {
-        // Primero verifica si hay sesión
-        if (!req.session.user) {
-            return res.redirect("/users/login");
+    profile: async (req, res) => {
+        try {
+            // Primero verifica si hay sesión
+            if (!req.session.user) {
+                return res.redirect("/users/login");
+            }
+    
+            // Lee el archivo users.json
+            const id = req.params.id;
+            // Busca el usuario
+            const user = await User.findByPk(id);
+            
+            
+    
+            // Renderiza la vista con el usuario y la sesión
+            res.render("users/profile", {
+                user: user,
+                sessionUser: req.session.user,
+                title: "Perfil",
+            });
+            
+        } catch (error) {
+            console.log(error);
+            
         }
-
-        // Lee el archivo users.json
-        const id = req.params.id;
-        // Busca el usuario
-        const user = User.findByPk(id);
-
-        // Si no encuentra el usuario, redirige a login
-        if (!user) {
-            return res.redirect("/users/login");
-        }
-
-        // Renderiza la vista con el usuario y la sesión
-        res.render("users/profile", {
-            user: user,
-            sessionUser: req.session.user,
-            title: "Perfil",
-        });
     },
 
     editProfile: async (req, res) => {
@@ -137,6 +146,7 @@ const usersController = {
 
             const { name, surname, email } = user;
             res.render("./users/profileEdit", {
+                user,
                 id,
                 name,
                 surname,
@@ -153,18 +163,16 @@ const usersController = {
         try {
             const id = req.params.id;
             const user = await User.findByPk(id);
-    
+
             const { name, surname, email } = req.body;
-    
+
             await user.update({
                 name,
                 surname,
-                email
-            })
-            ;
-    
+                email,
+            });
+
             res.render("./users/profile", { user, title: "Perfil" });
-            
         } catch (error) {
             console.error("Error:", error);
             throw new Error(error.message);
@@ -176,17 +184,15 @@ const usersController = {
             const id = req.params.id;
             await User.destroy({
                 where: {
-                    id:id
-                }
-            })
-            console.log("desde deleteProfile" , id);
-    
-            
+                    id: id,
+                },
+            });
+            console.log("desde deleteProfile", id);
+
             res.redirect("/users/register");
-            
         } catch (error) {
             console.error("Error:", error);
-            throw new Error(error.message);            
+            throw new Error(error.message);
         }
     },
 };
