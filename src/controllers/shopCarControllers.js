@@ -4,46 +4,74 @@ shopCarController = {
     getCart: async (req, res) => {
         try {
             const userId = await req.session.user.id;
-            
-            
-    
-            const ordershop = await Ordershop.findOne({ where: { userId } });
-            
-            
-    
+
+            const ordershop = await Ordershop.findOne({
+                include: [
+                    {
+                        association: "Shopcars",
+                        include: [{ association: "product" }],
+                    },
+                ],
+                where: { userId, status: "en proceso" },
+            });
+
+            if (!ordershop) {
+                return res.render("products/shopCar", {
+                    title: "Tu carrito",
+                    cart: [],
+                    ordershop,
+                    isLoggedIn: true,
+                });
+            }
+
             const cart = await Shopcar.findAll({
                 where: { ordershopId: ordershop.id },
-                include: ['product']
+                include: [
+                    {
+                        model: Product,
+                        as: "product", // este alias debe coincidir con el del modelo
+                    },
+                ],
             });
-            console.log('log de cart', cart);
+
+            let total = 0;
+            cart.forEach((item) => {
+                total += item.quantity * item.product.price;
+            });
+            console.log("datos de get.cart",{
+                user: userId,
+                ordershop: ordershop.id
+            });
             
-    
-            return res.render('products/shopCar', {
-                title: 'Tu carrito',
-                user: true,
+
+            return res.render("products/shopCar", {
+                title: "Tu carrito",
                 cart,
-                isLoggedIn: true
+                total,
+                ordershop,
+                userId,
+                user: true,
+                isLoggedIn: true,
             });
-    
         } catch (error) {
             console.error("Error al obtener el carrito:", error);
-            return res.status(500).send("Error interno al obtener el carrito");
+            res.status(500).send("Error interno del servidor");
         }
     },
-    
+
     addToCart: async (req, res) => {
         try {
             const userId = req.session.user.id;
             const { productId, quantity } = req.body;
-            
-            
-            let order = await Ordershop.findOne({
-                where: { userId },
-            });
+
+            console.log("Datos recibidos:", { userId, productId, quantity });
+
+            let order = await Ordershop.findOne({ where: { userId } });
+
             if (!order) {
-                order = await Ordershop.create({ usersId: userId, total: 0 });
+                order = await Ordershop.create({ userId, total: 0 });
+                console.log("Nueva orden creada:", order.id);
             }
-            
 
             let item = await Shopcar.findOne({
                 where: {
@@ -53,21 +81,26 @@ shopCarController = {
             });
 
             if (item) {
-                item.cant += Number(quantity);
+                item.quantity += Number(quantity);
                 await item.save();
+                console.log("Producto existente actualizado");
             } else {
                 await Shopcar.create({
                     ordershopId: order.id,
                     productId: productId,
-                    cant: 1,
+                    quantity: Number(quantity),
                 });
+                console.log("Producto nuevo agregado");
             }
-            console.log(item);
-            
 
-            return res.redirect('/product');
+            console.log("AGREGANDO producto al carrito:", {
+                productId,
+                quantity,
+            });
+
+            return res.json({ message: "Producto agregado al carrito" });
         } catch (error) {
-            console.log("Error al agregar producto:", error);
+            console.error("Error al agregar producto:", error);
             res.status(500).json({ error: "Error interno del servidor" });
         }
     },
@@ -77,11 +110,13 @@ shopCarController = {
             const userId = req.session.user.id;
             const { productId } = req.params;
             const { quantity } = req.body;
-            console.log('cantidad de productos', quantity);
-            
+
+            if (isNaN(quantity)) {
+                return res.status(400).json({ error: "Cantidad inválida" });
+            }
 
             const order = await Ordershop.findOne({
-                where: { users_id: userId },
+                where: { userId: userId },
             });
 
             const item = await Shopcar.findOne({
@@ -96,7 +131,13 @@ shopCarController = {
                     .status(404)
                     .json({ error: "Producto no encontrado en el carrito" });
 
-            item.cant = quantity;
+            console.log(
+                `Actualizando producto ${productId} con cantidad:`,
+                quantity
+            );
+
+            item.quantity = Number(quantity);
+
             await item.save();
 
             return res.json({ message: "Cantidad actualizada" });
@@ -121,8 +162,10 @@ shopCarController = {
                     productId: productId,
                 },
             });
+            console.log('se elimino producto del shopcar');
+            
 
-            return res.redirect('/shopcar');
+            return res.json({ message: "Producto eliminado"})
         } catch (error) {
             console.log("Error al eliminar producto:", error);
             res.status(500).json({ error: "Error interno del servidor" });
@@ -140,7 +183,7 @@ shopCarController = {
                 where: { ordershopId: order.id },
             });
 
-            return res.redirect('/shopcar');
+            return res.json({ message: "Carrito limpio"})
         } catch (error) {
             console.log("Error al vaciar carrito:", error);
             res.status(500).json({ error: "Error interno del servidor" });

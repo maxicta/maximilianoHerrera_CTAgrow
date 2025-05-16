@@ -13,11 +13,11 @@
         <p>Email: <%= user.email %></p>
     </div>
     <div class="buttons-sbmit">
-        <div style="width: 90%;">
-            <button>
-                <a style="color: greenyellow" href="/users/editprofile/<%= user.id %>">Actualizar datos</a>
+        <form action="/users/editprofile/<%= user.id %>" style="width: 90%;">
+            <button style="width: 100%;">
+                <a style="color: greenyellow" href="">Actualizar datos</a>
             </button>
-        </div>
+        </form>
         <form action="/users/remove/<%= user.id %>?_method=DELETE" method="post">
             <button style="width: 90%;">
                 <a style="color: greenyellow" href="">Eliminar cuenta</a>

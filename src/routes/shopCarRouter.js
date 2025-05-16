@@ -14,7 +14,7 @@ const isLoggedIn = (req, res, next) => {
   next();
 };
 
-router.get('/', getCart)
+router.get('/', isLoggedIn, getCart)
 router.get('/', isLoggedIn, getCart);
 router.post('/add', isLoggedIn, addToCart);
 router.put('/update/:productId', isLoggedIn, updateQuantity);

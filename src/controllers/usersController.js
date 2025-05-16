@@ -146,6 +146,7 @@ const usersController = {
 
             const { name, surname, email } = user;
             res.render("./users/profileEdit", {
+                user,
                 id,
                 name,
                 surname,

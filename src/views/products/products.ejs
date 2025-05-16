@@ -16,11 +16,8 @@
                     <p id="precio-product-detail">$<%=price%></p>
                     <p id="descripcion-product-detail"><%= brand %></p>
                     <p><%= description %></p>
-                    <form action="/shopcar/add" method="post">
-                        <input type="hidden" name="productId" value="<%= id %>">
-                        <input type="hidden" name="quantity" value="1">
-                        <button type="submit">AGREGAR AL CARRO</button>
-                    </form>
+                    
+                    <button onclick="addProduct('<%=id%>','<%=user.id%>')" type="submit">AGREGAR AL CARRO</button>
                     
                     <button>COMPRAR</button>
                 </article>
@@ -28,5 +25,6 @@
         </div>
     </main>
     <%- include('../partials/footer') %>
+    <script src="/javascripts/home.js"></script>
 </body>
 </html>

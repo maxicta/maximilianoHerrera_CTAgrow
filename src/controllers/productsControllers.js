@@ -40,10 +40,12 @@ const productsController = {
 
     detail: async (req, res, next) => {
         try {
+            const user = await req.session.user
             const id = req.params.id;
             const { name, price, image, brand, description } = await Product.findByPk(id);
 
             return res.render("products/products", {
+                user,
                 id,
                 name,
                 price,

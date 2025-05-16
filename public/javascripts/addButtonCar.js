@@ -1,6 +1,6 @@
-function addButtonCar() {
+/* function addButtonCar() {
     const button = document.getElementById("addProductCar");
-    console.log('req user desde js', req.session.user);
+    //console.log('req user desde js', req.session.user);
     const user = req.session.user;
     user != typeof 'undefined' 
     ? button.style.display = 'flex' 
@@ -11,4 +11,4 @@ function addButtonCar() {
 
 addButtonCar();
 
-user.addEventListener('user', addButtonCar);
+user.addEventListener('user', addButtonCar); */
